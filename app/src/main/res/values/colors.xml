@@ -2,8 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="green">#FF7dae45</color>
-    <color name="dark_green">#FF5f8235</color>
+    <color name="green">#FF7DAE45</color>
+    <color name="dark_green">#FF5F8235</color>
     <color name="yellow">#FFFFBD00</color>
     <color name="orange">#FFFF8E00</color>
+    <color name="color_section_event">#FF5F8235</color>
+    <color name="color_section_exhibit">#FF5F8235</color>
+    <color name="color_section_game">#9A1212</color>
+    <color name="color_section_info">#FF5F8235</color>
+    <color name="color_section_interesting">#FF5F8235</color>
+    <color name="color_section_review">#196C80</color>
 </resources>
