@@ -5,11 +5,14 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.glide.slider.library.SliderLayout
 import com.glide.slider.library.slidertypes.DefaultSliderView
 import com.omsk.railwaymuseum.R
@@ -22,6 +25,9 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+const val SLIDER_ANIMATION_START_DELAY = 7000L
+const val SLIDER_ANIMATION_DURATION = 7000L
+const val SLIDER_SHOW_DELAY = 3000L
 
 class HomeFragment : Fragment() {
 
@@ -47,15 +53,19 @@ class HomeFragment : Fragment() {
         //  заглушке слайдера устанавливается такая же высота
         val sliderHeight = (displayWidth / HOME_IMAGE_RATIO).toInt()
 
-        //Заглушка слайдера (изображение замещающее слайдер, когда в наличии только 1 фото).
-        //При наличии нескольких фото для слайдера эта заглушка должна становиться невидимой.
+        //Заглушка слайдера (изображение замещающее слайдер):
+        //  -   постоянно, если изображения для слайдера не загрузились;
+        //  -   временно, пока изображения загружаются в слайдер.
         val sliderPlaceholder: ImageView = view.findViewById(R.id.home_slider_placeholder)
         sliderPlaceholder.layoutParams.height = sliderHeight
-        sliderPlaceholder.setImageResource(R.drawable.home_placeholder)
+        Glide
+            .with(this)
+            .load(R.drawable.home_placeholder)
+            .into(sliderPlaceholder)
 
         //Устанавливать 1 фото в слайдер и останавливать автолистание слайдов не выход, т.к. остается
         //  возможность листания слайдера пользователем (установка isEnabled = false эту проблему
-        //  не решает), а листание одного и того же фото выглядит неудовлетворительно.
+        //  не решает), а листание одного и того же фото выглядит некрасиво.
         val sliderShow: SliderLayout = view.findViewById(R.id.home_slider)
         sliderShow.layoutParams.height = sliderHeight
         //Добавление uri картинок в слайдер с помощью live data
@@ -67,13 +77,15 @@ class HomeFragment : Fragment() {
                     sliderView.image(homeSliderImage.uri)
                     sliderShow.addSlider(sliderView)
                 }
-                sliderShow.startAutoCycle(7000, 7000, true)
+                sliderShow.startAutoCycle(SLIDER_ANIMATION_START_DELAY,
+                                        SLIDER_ANIMATION_DURATION,
+                                        true)
 
-                //Задержка исчезновения заглушки слайдера, чтобы слайдер успел загрузить изображения
-                //  и на экране не было видно процесса загрузки, т.к. он выглядит некрасиво.
+                //Задержка появления слайдера, чтобы пользователь не видел процесса загрузки
+                //  изображений в слайдер, т.к. это выглядит некрасиво.
                 MainScope().launch {
-                    delay(3000)
-                    sliderPlaceholder.visibility = View.INVISIBLE
+                    delay(SLIDER_SHOW_DELAY)
+                    sliderShow.visibility = VISIBLE
                 }
             }
         })
@@ -82,6 +94,15 @@ class HomeFragment : Fragment() {
         val homeSectionRecyclerView = view.findViewById<RecyclerView>(R.id.home_recycler)
         val adapter = HomeRecyclerAdapter(HomeSectionModel.list, requireContext())
         homeSectionRecyclerView.adapter = adapter
+        adapter.setListener(object : HomeRecyclerAdapter.Listener {
+            override fun onClick(itemData: HomeSectionModel) {
+                val actionToAfterClick = when(itemData.name) {
+                    "События" -> HomeFragmentDirections.actionHomeFragmentToEventListFragment()
+                    else -> null
+                }
+                actionToAfterClick?.let { findNavController().navigate(it) }
+            }
+        })
     }
 
 }

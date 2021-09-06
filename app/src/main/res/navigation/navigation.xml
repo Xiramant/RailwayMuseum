@@ -9,5 +9,27 @@
         android:id="@+id/homeFragment"
         android:name="com.omsk.railwaymuseum.ui.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_eventListFragment"
+            app:destination="@id/eventListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/eventListFragment"
+        android:name="com.omsk.railwaymuseum.ui.event.EventListFragment"
+        android:label="fragment_event_list"
+        tools:layout="@layout/fragment_event_list" >
+        <action
+            android:id="@+id/action_eventListFragment_to_detailPageFragment"
+            app:destination="@id/detailPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailPageFragment"
+        android:name="com.omsk.railwaymuseum.ui.DetailPageFragment"
+        android:label="fragment_detail_page"
+        tools:layout="@layout/fragment_detail_page" >
+        <argument
+            android:name="detailPageRequest"
+            app:argType="string" />
+    </fragment>
 </navigation>
