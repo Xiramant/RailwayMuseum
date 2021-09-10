@@ -1,5 +1,6 @@
 package com.omsk.railwaymuseum.util
 
+import android.view.ViewTreeObserver
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -9,6 +10,10 @@ import com.bumptech.glide.request.RequestOptions
 import com.omsk.railwaymuseum.R
 import com.omsk.railwaymuseum.net.event.EventListModel
 import com.omsk.railwaymuseum.ui.event.EventListAdapter
+
+private const val START_COUNT = 70
+private const val COUNT_INCREMENT = 10
+private const val EVENT_LIST_TEXT_LINE_COUNT = 4
 
 @BindingAdapter("eventListData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<EventListModel>?) {
@@ -39,5 +44,31 @@ fun TextView.setEventName(item: EventListModel) {
 
 @BindingAdapter("eventListText")
 fun TextView.setEventText(item: EventListModel) {
-    text = item.text.substring(0, 50)
+    val clearText = getClearText(item.text)
+    var count = START_COUNT
+    text = clearText.smartTruncate(count)
+
+    //При использовании OnGlobalLayoutListener иногда получаются некорректрые результаты: в альбомной
+    //  ориентации при пролистывании recycler view вверх/вниз в некоторых карточках получается
+    //  отображение текста с начальным значением счетчика длины (50 на текущий момент), поэтому
+    //  использован OnPreDrawListener.
+    viewTreeObserver.addOnPreDrawListener(
+        object : ViewTreeObserver.OnPreDrawListener {
+            override fun onPreDraw(): Boolean {
+                if (width == 0) {
+                    return false
+                }
+                viewTreeObserver.removeOnPreDrawListener(this)
+
+                while (lineCount <= EVENT_LIST_TEXT_LINE_COUNT) {
+                    count += COUNT_INCREMENT
+                    text = clearText.smartTruncate(count)
+                    invalidate()
+                }
+                text = clearText.smartTruncate(count - COUNT_INCREMENT)
+
+                return true
+            }
+        }
+    )
 }
