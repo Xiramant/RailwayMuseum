@@ -52,7 +52,7 @@
                     android:layout_marginBottom="2dp"
                     android:lines="2"
                     android:gravity="start|top"
-                    android:textColor="#008577"
+                    android:textColor="@color/dark_green"
                     card_view:layout_constraintBottom_toTopOf="@+id/event_list_text"
                     card_view:layout_constraintEnd_toEndOf="parent"
                     card_view:layout_constraintStart_toEndOf="@+id/event_list_image"
