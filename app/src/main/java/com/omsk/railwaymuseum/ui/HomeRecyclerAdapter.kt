@@ -57,7 +57,7 @@ class HomeRecyclerAdapter(private val data : List<HomeSectionModel>, private val
 
         fun bind(itemData: HomeSectionModel, context: Context) {
             sectionIcon.setImageResource(itemData.iconResourceId)
-            sectionDescription.text = itemData.name
+            sectionDescription.text = context.getString(itemData.name)
             //для использования getColor(id, theme) требуется api не менее 23
             sectionDescription.setTextColor(
                 if (Build.VERSION.SDK_INT >= 23) {

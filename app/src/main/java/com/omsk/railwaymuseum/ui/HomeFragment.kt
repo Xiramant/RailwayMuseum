@@ -97,7 +97,8 @@ class HomeFragment : Fragment() {
         adapter.setListener(object : HomeRecyclerAdapter.Listener {
             override fun onClick(itemData: HomeSectionModel) {
                 val actionToAfterClick = when(itemData.name) {
-                    "События" -> HomeFragmentDirections.actionHomeFragmentToEventListFragment()
+                    R.string.name_section_event -> HomeFragmentDirections.actionHomeFragmentToEventListFragment()
+                    R.string.name_section_game -> HomeFragmentDirections.actionHomeFragmentToGameFragment()
                     else -> null
                 }
                 actionToAfterClick?.let { findNavController().navigate(it) }
