@@ -9,7 +9,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.omsk.railwaymuseum.R
 import com.omsk.railwaymuseum.net.event.EventListModel
+import com.omsk.railwaymuseum.net.game.GameListModel
 import com.omsk.railwaymuseum.ui.event.EventListAdapter
+import com.omsk.railwaymuseum.ui.game.GameListAdapter
 
 private const val START_COUNT = 70
 private const val COUNT_INCREMENT = 10
@@ -71,4 +73,50 @@ fun TextView.setEventText(item: EventListModel) {
             }
         }
     )
+}
+
+
+
+@BindingAdapter("gameListData")
+fun bindGameRecyclerView(recyclerView: RecyclerView, data: List<GameListModel>?) {
+    val adapter = recyclerView.adapter as GameListAdapter
+    data?.let {
+        adapter.submitList(data.sortedBy { it.order })
+    }
+}
+
+@BindingAdapter("gameListImage")
+fun setGameListImage(imgView: ImageView, item: GameListModel) {
+    val image = when(item.type) {
+        imgView.context.getString(R.string.game_type_quiz) -> R.drawable.icon_game_quiz
+        imgView.context.getString(R.string.game_type_quest) -> R.drawable.icon_game_quest
+        imgView.context.getString(R.string.game_type_fragment) -> R.drawable.icon_game_fragment
+        else -> R.drawable.icon_game_question
+    }
+    Glide.with(imgView.context)
+            .load(image)
+            .into(imgView)
+}
+
+@BindingAdapter("gameListName")
+fun setGameListName(textView: TextView, item: GameListModel) {
+    textView.text = item.name
+}
+
+@BindingAdapter("gameListType")
+fun setGameListType(textView: TextView, item: GameListModel) {
+    textView.text = textView.context.getString(R.string.game_list_type, item.typeDescription)
+}
+
+@BindingAdapter("gameListDifficultyImage")
+fun setGameListDifficultyImage(imgView: ImageView, item: GameListModel) {
+    val image = when(item.difficulty) {
+        1 -> R.drawable.icon_game_star_1
+        2 -> R.drawable.icon_game_star_2
+        3 -> R.drawable.icon_game_star_3
+        else -> R.drawable.icon_game_star_3
+    }
+    Glide.with(imgView.context)
+            .load(image)
+            .into(imgView)
 }

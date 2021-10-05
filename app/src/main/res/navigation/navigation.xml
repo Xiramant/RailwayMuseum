@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_eventListFragment"
             app:destination="@id/eventListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_gameFragment"
+            app:destination="@id/gameListFragment" />
     </fragment>
     <fragment
         android:id="@+id/eventListFragment"
@@ -31,5 +34,23 @@
         <argument
             android:name="detailPageRequest"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameListFragment"
+        android:name="com.omsk.railwaymuseum.ui.game.GameListFragment"
+        android:label="fragment_game_list"
+        tools:layout="@layout/fragment_game_list" >
+        <action
+            android:id="@+id/action_gameListFragment_to_gameRulesFragment"
+            app:destination="@id/gameRulesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameRulesFragment"
+        android:name="com.omsk.railwaymuseum.ui.game.GameRulesFragment"
+        android:label="fragment_game_rules"
+        tools:layout="@layout/fragment_game_rules" >
+        <argument
+            android:name="gameId"
+            app:argType="integer" />
     </fragment>
 </navigation>

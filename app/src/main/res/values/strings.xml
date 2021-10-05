@@ -6,11 +6,18 @@
     <string name="name_section_info">О музее</string>
     <string name="name_section_interesting">Интересные факты</string>
     <string name="name_section_review">Отзывы</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="home_slider_placeholder_description">Внешний вид выставочного центра омских железнодорожников</string>
+
     <string name="event_list_transition_name">event_list_%1$s</string>
     <string name="event_detail_transition_name">event_detail</string>
+
+    <string name="game_list_image_description">Иконка игры</string>
+    <string name="game_type_quiz">quiz</string>
+    <string name="game_type_quest">quest</string>
+    <string name="game_type_fragment">fragment</string>
     <string name="game_list_type">Тип: %s</string>
-    <string name="game_list_difficulty">Сложность: %s</string>
+    <string name="game_list_difficulty">Сложность:</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
