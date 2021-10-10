@@ -10,6 +10,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.omsk.railwaymuseum.R
 import com.omsk.railwaymuseum.net.event.EventListModel
 import com.omsk.railwaymuseum.net.game.GameListModel
+import com.omsk.railwaymuseum.net.game.GameRulesModel
 import com.omsk.railwaymuseum.ui.event.EventListAdapter
 import com.omsk.railwaymuseum.ui.game.GameListAdapter
 
@@ -119,4 +120,21 @@ fun setGameListDifficultyImage(imgView: ImageView, item: GameListModel) {
     Glide.with(imgView.context)
             .load(image)
             .into(imgView)
+}
+
+
+
+@BindingAdapter("gameRulesCharacter")
+fun setGameRulesCharacter(imgView: ImageView, gameType: String?) {
+    gameType?.let {
+        val image = when(it) {
+            imgView.context.getString(R.string.game_type_quiz) -> R.drawable.game_rules_character_quiz
+            imgView.context.getString(R.string.game_type_quest) -> R.drawable.game_rules_character_quest
+            imgView.context.getString(R.string.game_type_fragment) -> R.drawable.game_rules_character_fragment
+            else -> R.drawable.game_rules_character_quest
+        }
+        Glide.with(imgView.context)
+                .load(image)
+                .into(imgView)
+    }
 }

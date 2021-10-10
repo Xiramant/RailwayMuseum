@@ -3,7 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="green">#FF7DAE45</color>
+    <color name="green_transparent">#c07DAE45</color>
     <color name="dark_green">#FF5F8235</color>
+    <color name="dark_green_transparent">#c05F8235</color>
     <color name="yellow">#FFFFBD00</color>
     <color name="orange">#FFFF8E00</color>
     <color name="color_section_event">#FF5F8235</color>
