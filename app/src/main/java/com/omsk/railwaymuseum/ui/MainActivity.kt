@@ -3,7 +3,6 @@ package com.omsk.railwaymuseum.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.omsk.railwaymuseum.R
-import com.omsk.railwaymuseum.util.getMetrics
 
 class MainActivity : AppCompatActivity() {
 

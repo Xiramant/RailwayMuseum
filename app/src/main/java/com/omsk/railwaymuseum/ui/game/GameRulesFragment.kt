@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.bumptech.glide.Glide
 import com.omsk.railwaymuseum.R
 import com.omsk.railwaymuseum.databinding.FragmentGameRulesBinding
+import com.omsk.railwaymuseum.util.setGameBackground
 import com.omsk.railwaymuseum.viewmodels.GameRulesViewModel
 
 class GameRulesFragment : Fragment() {
@@ -21,9 +22,10 @@ class GameRulesFragment : Fragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View {
 
         binding = FragmentGameRulesBinding.inflate(inflater)
+        setGameBackground(binding.gameRulesBackground)
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
@@ -50,13 +52,6 @@ class GameRulesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //Перенести в BindingUtils не получается, т.к. функция требует передать 1 или 2 аргумента
-        //  (в дополнение к аттрибуту), что в данном случае не требуется, а передавать аргумент без
-        //  его использования не лучший вариант.
-        Glide.with(view.context)
-                .load(R.drawable.game_rules_background)
-                .into(binding.gameRulesBackground)
-
         viewModel.response.observe(viewLifecycleOwner, {
             it?.let {
                 val gameRulesCharacterAnim = when(it.type) {
@@ -66,6 +61,18 @@ class GameRulesFragment : Fragment() {
                     else -> AnimationUtils.loadAnimation(context, R.anim.translate_game_rules_character_quiz)
                 }
                 binding.gameRulesCharacter.startAnimation(gameRulesCharacterAnim)
+
+                binding.gameRulesGo.setOnClickListener {view ->
+                    val directions = when(it.type) {
+                        view.context.getString(R.string.game_type_quiz) ->
+                            GameRulesFragmentDirections.actionGameRulesFragmentToGameQuizFragment(it)
+                        else -> null
+                    }
+
+                    if (directions != null) {
+                        findNavController().navigate(directions)
+                    }
+                }
             }
         })
     }

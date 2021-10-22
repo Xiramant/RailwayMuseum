@@ -1,7 +1,10 @@
 package com.omsk.railwaymuseum.util
 
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewTreeObserver
 import android.widget.ImageView
+import android.widget.RadioButton
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +13,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.omsk.railwaymuseum.R
 import com.omsk.railwaymuseum.net.event.EventListModel
 import com.omsk.railwaymuseum.net.game.GameListModel
-import com.omsk.railwaymuseum.net.game.GameRulesModel
+import com.omsk.railwaymuseum.net.game.GameQuestionsModel
 import com.omsk.railwaymuseum.ui.event.EventListAdapter
 import com.omsk.railwaymuseum.ui.game.GameListAdapter
 
@@ -123,6 +126,15 @@ fun setGameListDifficultyImage(imgView: ImageView, item: GameListModel) {
 }
 
 
+//Система требует для @BindingAdapter использование 1 или 2 параметров, поэтому пришлось
+//  использовать обычную функцию.
+fun setGameBackground(imgView: ImageView){
+    Glide.with(imgView.context)
+            .load(R.drawable.game_rules_background)
+            .into(imgView)
+}
+
+
 
 @BindingAdapter("gameRulesCharacter")
 fun setGameRulesCharacter(imgView: ImageView, gameType: String?) {
@@ -136,5 +148,38 @@ fun setGameRulesCharacter(imgView: ImageView, gameType: String?) {
         Glide.with(imgView.context)
                 .load(image)
                 .into(imgView)
+    }
+}
+
+
+
+@BindingAdapter("gameQuizImage")
+fun setGameQuizImage(imgView: ImageView, gameImage: String?) {
+    gameImage?.let {
+        if (gameImage == "") {
+            imgView.visibility = GONE
+        } else {
+            imgView.visibility = VISIBLE
+        }
+
+        val imgUrl = "${BASE_URL}${gameImage}"
+        Glide.with(imgView.context)
+                .load(imgUrl)
+                .into(imgView)
+    }
+}
+
+@BindingAdapter(value = ["gameQuizAnswers", "radioButtonId"], requireAll = true)
+fun setGameQuizAnswers(radioButton: RadioButton, item: GameQuestionsModel?, radioButtonId: Int) {
+    item?.let {
+        println("item = ${item.quizAnswer}")
+        println("size = ${item.quizAnswer.size}")
+        println("radioButtonId = $radioButtonId")
+        if (radioButtonId < item.quizAnswer.size) {
+            radioButton.text = item.quizAnswer[radioButtonId]
+            radioButton.visibility = VISIBLE
+        } else {
+            radioButton.visibility = GONE
+        }
     }
 }

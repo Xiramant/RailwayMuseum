@@ -46,7 +46,7 @@
             app:enterAnim="@anim/fragment_fade_enter"
             app:exitAnim="@anim/fragment_fade_exit"
             app:popEnterAnim="@anim/fragment_fade_enter"
-            app:popExitAnim="@anim/slide_out" />
+            app:popExitAnim="@anim/slide_out"/>
     </fragment>
     <fragment
         android:id="@+id/gameRulesFragment"
@@ -56,5 +56,49 @@
         <argument
             android:name="gameId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_gameRulesFragment_to_gameQuizFragment"
+            app:destination="@id/gameQuizFragment"
+            app:popUpTo="@id/gameRulesFragment"
+            app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/gameQuizFragment"
+        android:name="com.omsk.railwaymuseum.ui.game.GameQuizFragment"
+        android:label="GameQuizFragment" >
+        <argument
+            android:name="game"
+            app:argType="com.omsk.railwaymuseum.net.game.GameRulesModel" />
+        <action
+            android:id="@+id/action_gameQuizFragment_to_gameResultFragment"
+            app:destination="@id/gameResultFragment"
+            app:popUpTo="@id/gameQuizFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameResultFragment"
+        android:name="com.omsk.railwaymuseum.ui.game.GameResultFragment"
+        android:label="fragment_game_result"
+        tools:layout="@layout/fragment_game_result" >
+        <argument
+            android:name="game"
+            app:argType="com.omsk.railwaymuseum.net.game.GameRulesModel" />
+        <argument
+            android:name="game_result_number"
+            app:argType="integer" />
+        <argument
+            android:name="game_time"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_gameResultFragment_to_gameListFragment"
+            app:destination="@id/gameListFragment"
+            app:popUpTo="@id/gameListFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_gameResultFragment_to_gameQuizFragment"
+            app:destination="@id/gameQuizFragment"
+            app:popUpTo="@id/gameResultFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
 </navigation>
