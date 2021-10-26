@@ -1,2 +1,3 @@
+include ':qrcodescanner'
 include ':app'
 rootProject.name = "RailwayMuseum"

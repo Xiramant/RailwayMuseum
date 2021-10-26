@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">QRCodeScanner</string>
+
+    <string name="title_activity_scan_qr_code">Сканирование</string>
+    <string name="qc_code_close">Закрыть</string>
+    <string name="qr_code_select_picture">Изображение</string>
+    <string name="qr_code_open_flash_light">Включить фонарик</string>
+    <string name="qr_code_close_flash_light">Выключить фонарик</string>
+    <string name="qr_code_auto_scan_notification">Наведите на QR-код</string>
+    <string name="qr_code_notification">Уведомление</string>
+    <string name="qr_code_camera_not_open">Не получается запустить фотокамеру</string>
+    <string name="qr_code_positive_button_know">OK</string>
+    <string name="qr_code_positive_button_confirm">Подтверждение</string>
+    <string name="qr_code_could_not_read_qr_code_from_picture">Не удалось открыть изображение. Попробуйте другое изображение~</string>
+    <string name="qr_code_could_not_read_qr_code_from_scanner">Открыть отсканированное содержимое не удалось</string>
+    <string name="qr_code_camera_not_found">Фотокамера отсутствует</string>
+</resources>
