@@ -131,6 +131,7 @@
                         tools:src="@drawable/home_placeholder"
                         android:adjustViewBounds="true"
                         android:layout_marginTop="5dp"
+                        android:visibility="gone"
                         gameQuizImage="@{viewModel.currentGameQuestion.image}"
                         app:layout_constraintTop_toBottomOf="@+id/game_quiz_current_question"
                         app:layout_constraintStart_toStartOf="parent"
@@ -150,7 +151,7 @@
                             android:id="@+id/game_quiz_radio_button_0"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:visibility="visible"
+                            android:visibility="gone"
                             gameQuizAnswers="@{viewModel.currentGameQuestion}"
                             radioButtonId="@{0}"
                             tools:text="Blue" />
