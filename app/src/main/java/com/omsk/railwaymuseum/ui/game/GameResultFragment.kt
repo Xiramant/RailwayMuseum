@@ -33,7 +33,10 @@ class GameResultFragment : Fragment() {
             findNavController().navigate(directions)
         }
         binding.gameRulesReplay.setOnClickListener {
-            val directions = GameResultFragmentDirections.actionGameResultFragmentToGameQuizFragment(args.game)
+            val directions = when(args.game.type) {
+                it.context.getString(R.string.game_type_quiz) -> GameResultFragmentDirections.actionGameResultFragmentToGameQuizFragment(args.game)
+                else -> GameResultFragmentDirections.actionGameResultFragmentToGameQuestFragment(args.game)
+            }
             findNavController().navigate(directions)
         }
 

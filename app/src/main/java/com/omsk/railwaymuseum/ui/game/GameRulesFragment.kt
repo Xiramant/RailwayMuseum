@@ -66,12 +66,10 @@ class GameRulesFragment : Fragment() {
                     val directions = when(it.type) {
                         view.context.getString(R.string.game_type_quiz) ->
                             GameRulesFragmentDirections.actionGameRulesFragmentToGameQuizFragment(it)
-                        else -> null
+                        else -> GameRulesFragmentDirections.actionGameRulesFragmentToGameQuestFragment(it)
                     }
 
-                    if (directions != null) {
-                        findNavController().navigate(directions)
-                    }
+                    findNavController().navigate(directions)
                 }
             }
         })

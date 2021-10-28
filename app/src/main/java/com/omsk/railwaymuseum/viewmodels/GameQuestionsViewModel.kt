@@ -29,6 +29,10 @@ class GameQuestionsViewModel(private val game: GameRulesModel): ViewModel() {
     val moveToResult: LiveData<Boolean>
         get() = _moveToResult
 
+    private val _wrongAnswerToast = MutableLiveData(false)
+    val wrongAnswerToast: LiveData<Boolean>
+        get() = _wrongAnswerToast
+
     init {
         getGameQuestions()
     }
@@ -49,13 +53,24 @@ class GameQuestionsViewModel(private val game: GameRulesModel): ViewModel() {
         setQuestion()
     }
 
-    fun testRightAnswer(selectAnswerId: Int) {
+    fun quizTestRightAnswer(selectAnswerId: Int) {
         if(currentGameQuestion.value!!.quizAnswer[selectAnswerId] == currentGameQuestion.value!!.answer) {
             _rightAnswerNumber.value = _rightAnswerNumber.value!!.inc()
         }
     }
 
+    fun questTestRightAnswer(scanAnswer: String) {
+        if(scanAnswer == currentGameQuestion.value!!.answer) {
+            _rightAnswerNumber.value = _rightAnswerNumber.value!!.inc()
+            setQuestion()
+        } else {
+            _wrongAnswerToast.value = true
+        }
+    }
+
     fun setQuestion() {
+        _wrongAnswerToast.value = false
+
         _questionIndex.value?.let {
             if (it < game.questionsNumber) {
                 _currentGameQuestion.value = GameQuestionsModel(

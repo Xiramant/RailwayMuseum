@@ -31,6 +31,9 @@
     <string name="game_quiz_next">Далее</string>
     <string name="game_comparison">%1$d / %2$d</string>
 
+    <string name="game_quest_scan">Сканировать QR код</string>
+    <string name="game_quest_null_question">Найди предмет:</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

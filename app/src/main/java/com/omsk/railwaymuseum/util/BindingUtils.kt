@@ -183,3 +183,12 @@ fun setGameQuizAnswers(radioButton: RadioButton, item: GameQuestionsModel?, radi
         }
     }
 }
+
+@BindingAdapter("gameQuestQuestion")
+fun setGameQuestQuestion(textView: TextView, question: String?) {
+    if (question == null || question == "") {
+        textView.text = textView.context.getString(R.string.game_quest_null_question)
+    } else {
+        textView.text = question
+    }
+}

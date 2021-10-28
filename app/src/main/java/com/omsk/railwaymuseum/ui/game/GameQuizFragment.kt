@@ -14,11 +14,11 @@ import com.omsk.railwaymuseum.databinding.FragmentGameQuizBinding
 import com.omsk.railwaymuseum.util.setGameBackground
 import com.omsk.railwaymuseum.viewmodels.GameQuestionsViewModel
 
+private const val TOAST_MESSAGE = "Выберите вариант ответа"
 
 class GameQuizFragment : Fragment() {
 
     private val args: GameQuizFragmentArgs by navArgs()
-    private val toastMessage = "Выберите вариант ответа"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -51,7 +51,7 @@ class GameQuizFragment : Fragment() {
             val checkedId = binding.gameQuizRadioGroup.checkedRadioButtonId
             if (checkedId == -1) {
                 Toast.makeText(binding.gameQuizRadioGroup.context,
-                        toastMessage,
+                        TOAST_MESSAGE,
                         Toast.LENGTH_SHORT).show()
             } else {
                 val selectAnswerId = when(checkedId) {
@@ -63,7 +63,7 @@ class GameQuizFragment : Fragment() {
                     R.id.game_quiz_radio_button_5 -> 5
                     else -> -1
                 }
-                viewModel.testRightAnswer(selectAnswerId)
+                viewModel.quizTestRightAnswer(selectAnswerId)
 
                 binding.gameQuizRadioGroup.clearCheck()
                 viewModel.setQuestion()

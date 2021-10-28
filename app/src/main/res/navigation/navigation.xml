@@ -61,11 +61,17 @@
             app:destination="@id/gameQuizFragment"
             app:popUpTo="@id/gameRulesFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_gameRulesFragment_to_gameQuestFragment"
+            app:destination="@id/gameQuestFragment"
+            app:popUpTo="@id/gameRulesFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/gameQuizFragment"
         android:name="com.omsk.railwaymuseum.ui.game.GameQuizFragment"
-        android:label="GameQuizFragment" >
+        android:label="GameQuizFragment"
+        tools:layout="@layout/fragment_game_quiz">
         <argument
             android:name="game"
             app:argType="com.omsk.railwaymuseum.net.game.GameRulesModel" />
@@ -99,6 +105,25 @@
             app:destination="@id/gameQuizFragment"
             app:popUpTo="@id/gameResultFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_gameResultFragment_to_gameQuestFragment"
+            app:destination="@id/gameQuestFragment"
+            app:popUpTo="@id/gameResultFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
+    <fragment
+        android:id="@+id/gameQuestFragment"
+        android:name="com.omsk.railwaymuseum.ui.game.GameQuestFragment"
+        android:label="GameQuestFragment">
+        <argument
+            android:name="game"
+            app:argType="com.omsk.railwaymuseum.net.game.GameRulesModel" />
+        <action
+            android:id="@+id/action_gameQuestFragment_to_gameResultFragment"
+            app:destination="@id/gameResultFragment"
+            app:popUpTo="@id/gameQuestFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
 
 </navigation>
