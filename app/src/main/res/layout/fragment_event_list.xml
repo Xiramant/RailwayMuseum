@@ -17,7 +17,6 @@
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="1"
         android:orientation="vertical"
-        android:transitionGroup="true"
         eventListData="@{viewModel.response}"
         />
 

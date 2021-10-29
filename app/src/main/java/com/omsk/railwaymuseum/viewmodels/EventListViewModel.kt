@@ -1,13 +1,9 @@
 package com.omsk.railwaymuseum.viewmodels
 
-import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import com.omsk.railwaymuseum.net.event.EventListApi
 import com.omsk.railwaymuseum.net.event.EventListModel
-import com.omsk.railwaymuseum.util.TAG
 import kotlinx.coroutines.launch
-import java.io.IOException
 
 class EventListViewModel: ViewModel() {
 
@@ -23,7 +19,7 @@ class EventListViewModel: ViewModel() {
     private fun getEventList() {
         viewModelScope.launch {
             try {
-                _response.value = EventListApi.retrofitService.getEventListApi()
+                _response.value = EventListApi.retrofitService.getEventListApi("event_list")
             } catch (e: Exception) {
                 _response.value = ArrayList()
             }

@@ -5,37 +5,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.transition.MaterialContainerTransform
-import com.omsk.railwaymuseum.R
-import com.omsk.railwaymuseum.util.themeColor
+import com.omsk.railwaymuseum.databinding.FragmentDetailPageBinding
+import com.omsk.railwaymuseum.util.setGameBackground
 
 class DetailPageFragment : Fragment() {
 
     private val args: DetailPageFragmentArgs by navArgs()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        sharedElementEnterTransition = MaterialContainerTransform().apply {
-            drawingViewId = R.id.nav_host_fragment
-            duration = resources.getInteger(R.integer.reply_motion_duration_large).toLong()
-            scrimColor = Color.TRANSPARENT
-            setAllContainerColors(requireContext().themeColor(R.attr.colorSurface))
-        }
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_detail_page, container, false)
-    }
+                              savedInstanceState: Bundle?): View {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        val binding = FragmentDetailPageBinding.inflate(inflater)
 
-        val webView = view.findViewById<WebView>(R.id.page_detail)
-        webView.loadUrl(args.detailPageRequest)
+        setGameBackground(binding.pageDetailBackground)
+        binding.pageDetailWebview.setBackgroundColor(Color.TRANSPARENT)
+        binding.pageDetailWebview.loadUrl(args.detailPageRequest)
+
+        return binding.root
     }
 }

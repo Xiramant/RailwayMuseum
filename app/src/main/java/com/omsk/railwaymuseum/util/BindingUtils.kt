@@ -45,7 +45,11 @@ fun setEventImage(imgView: ImageView, item: EventListModel) {
 
 @BindingAdapter("eventListName")
 fun TextView.setEventName(item: EventListModel) {
-    text = item.shortName
+    text = if (item.shortName == "") {
+        item.name
+    } else {
+        item.shortName
+    }
 }
 
 @BindingAdapter("eventListText")
@@ -132,6 +136,7 @@ fun setGameBackground(imgView: ImageView){
     Glide.with(imgView.context)
             .load(R.drawable.game_rules_background)
             .into(imgView)
+    imgView.alpha = 0.7F
 }
 
 
@@ -172,9 +177,6 @@ fun setGameQuizImage(imgView: ImageView, gameImage: String?) {
 @BindingAdapter(value = ["gameQuizAnswers", "radioButtonId"], requireAll = true)
 fun setGameQuizAnswers(radioButton: RadioButton, item: GameQuestionsModel?, radioButtonId: Int) {
     item?.let {
-        println("item = ${item.quizAnswer}")
-        println("size = ${item.quizAnswer.size}")
-        println("radioButtonId = $radioButtonId")
         if (radioButtonId < item.quizAnswer.size) {
             radioButton.text = item.quizAnswer[radioButtonId]
             radioButton.visibility = VISIBLE

@@ -16,6 +16,9 @@ data class EventListModel(
     val imageUri: String,
 
     @field:Expose
+    val name: String,
+
+    @field:Expose
     @field:SerializedName("short_name")
     val shortName: String,
 

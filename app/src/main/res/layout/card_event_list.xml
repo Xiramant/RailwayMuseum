@@ -23,8 +23,7 @@
             card_view:cardCornerRadius="4dp"
             card_view:cardElevation="1dp"
             android:layout_margin="2dp"
-            android:onClick="@{(view) -> clickListenerEventList.onClick(view, eventListModel)}"
-            android:transitionName="@{@string/event_list_transition_name(eventListModel.id)}"
+            android:onClick="@{() -> clickListenerEventList.onClick(eventListModel)}"
             >
 
             <androidx.constraintlayout.widget.ConstraintLayout

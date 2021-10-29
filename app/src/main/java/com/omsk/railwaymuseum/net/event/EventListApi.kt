@@ -5,6 +5,7 @@ import com.omsk.railwaymuseum.util.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 private val gson = GsonBuilder()
     .setLenient()
@@ -16,8 +17,8 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 interface EventListApiService {
-    @GET("mobile.php?goal=event_list")
-    suspend fun getEventListApi(): List<EventListModel>
+    @GET("mobile.php?")
+    suspend fun getEventListApi(@Query("goal") goalName: String): List<EventListModel>
 }
 
 object EventListApi {

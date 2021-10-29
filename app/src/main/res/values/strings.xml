@@ -9,9 +9,6 @@
 
     <string name="home_slider_placeholder_description">Внешний вид выставочного центра омских железнодорожников</string>
 
-    <string name="event_list_transition_name">event_list_%1$s</string>
-    <string name="event_detail_transition_name">event_detail</string>
-
     <string name="game_list_image_description">Иконка игры</string>
     <string name="game_type_quiz">quiz</string>
     <string name="game_type_quest">quest</string>

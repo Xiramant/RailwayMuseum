@@ -1,7 +1,6 @@
 package com.omsk.railwaymuseum.ui.event
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -51,6 +50,6 @@ class EventListAdapter(private val clickListener: ClickListenerEventList):
     }
 }
 
-class ClickListenerEventList(val clickListener: (cardView: View, eventId: String) -> Unit) {
-    fun onClick(cardView: View, dataItem: EventListModel) = clickListener(cardView, dataItem.id.toString())
+class ClickListenerEventList(val clickListener: (eventId: String) -> Unit) {
+    fun onClick(dataItem: EventListModel) = clickListener(dataItem.id.toString())
 }
