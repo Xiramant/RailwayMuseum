@@ -17,8 +17,8 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 interface EventListApiService {
-    @GET("mobile.php?")
-    suspend fun getEventListApi(@Query("goal") goalName: String): List<EventListModel>
+    @GET("mobile.php?goal=section_list")
+    suspend fun getEventListApi(@Query("type") goalName: String): List<EventListModel>
 }
 
 object EventListApi {

@@ -2,14 +2,12 @@ package com.omsk.railwaymuseum.ui
 
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -20,7 +18,6 @@ import com.omsk.railwaymuseum.data.HomeSectionModel
 import com.omsk.railwaymuseum.util.HOME_IMAGE_RATIO
 import com.omsk.railwaymuseum.util.getDisplayWidth
 import com.omsk.railwaymuseum.viewmodels.HomeViewModel
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -28,6 +25,9 @@ import kotlinx.coroutines.launch
 const val SLIDER_ANIMATION_START_DELAY = 7000L
 const val SLIDER_ANIMATION_DURATION = 7000L
 const val SLIDER_SHOW_DELAY = 3000L
+const val EVENT_NET_GOAL_TYPE = "event"
+const val INTERESTING_NET_GOAL_TYPE = "interesting"
+const val EXHIBIT_NET_GOAL_TYPE = "exhibit"
 
 class HomeFragment : Fragment() {
 
@@ -97,7 +97,12 @@ class HomeFragment : Fragment() {
         adapter.setListener(object : HomeRecyclerAdapter.Listener {
             override fun onClick(itemData: HomeSectionModel) {
                 val actionToAfterClick = when(itemData.name) {
-                    R.string.name_section_event -> HomeFragmentDirections.actionHomeFragmentToEventListFragment()
+                    R.string.name_section_event -> HomeFragmentDirections
+                            .actionHomeFragmentToEventListFragment(EVENT_NET_GOAL_TYPE)
+                    R.string.name_section_interesting -> HomeFragmentDirections
+                            .actionHomeFragmentToEventListFragment(INTERESTING_NET_GOAL_TYPE)
+                    R.string.name_section_exhibit -> HomeFragmentDirections
+                            .actionHomeFragmentToEventListFragment(EXHIBIT_NET_GOAL_TYPE)
                     R.string.name_section_game -> HomeFragmentDirections.actionHomeFragmentToGameFragment()
                     else -> null
                 }

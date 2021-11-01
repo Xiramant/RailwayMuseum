@@ -7,13 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.omsk.railwaymuseum.databinding.FragmentEventListBinding
 import com.omsk.railwaymuseum.util.BASE_URL
 import com.omsk.railwaymuseum.viewmodels.EventListViewModel
 
-const val EVENT_REQUEST = "${BASE_URL}mobile.php?goal=event&id="
+const val DETAIL_REQUEST = "${BASE_URL}mobile.php?goal=section&id="
 
 class EventListFragment : Fragment() {
+
+    private val args: EventListFragmentArgs by navArgs()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -23,12 +26,13 @@ class EventListFragment : Fragment() {
         val adapter = EventListAdapter(ClickListenerEventList {
             it.let {
                 val directions = EventListFragmentDirections
-                        .actionEventListFragmentToDetailPageFragment("$EVENT_REQUEST$it")
+                        .actionEventListFragmentToDetailPageFragment("$DETAIL_REQUEST$it")
                 findNavController().navigate(directions)
             }
         })
 
-        val viewModel = ViewModelProvider(this, EventListViewModel.Factory()).get(EventListViewModel:: class.java)
+        val viewModel = ViewModelProvider(this, EventListViewModel.Factory(args.sectionNetGoalType))
+                .get(EventListViewModel:: class.java)
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel

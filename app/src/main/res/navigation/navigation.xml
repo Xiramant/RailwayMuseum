@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_eventListFragment_to_detailPageFragment"
             app:destination="@id/detailPageFragment" />
+        <argument
+            android:name="section_net_goal_type"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/detailPageFragment"
