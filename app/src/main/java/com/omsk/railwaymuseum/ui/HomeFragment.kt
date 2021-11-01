@@ -15,6 +15,7 @@ import com.glide.slider.library.SliderLayout
 import com.glide.slider.library.slidertypes.DefaultSliderView
 import com.omsk.railwaymuseum.R
 import com.omsk.railwaymuseum.data.HomeSectionModel
+import com.omsk.railwaymuseum.util.BASE_URL
 import com.omsk.railwaymuseum.util.HOME_IMAGE_RATIO
 import com.omsk.railwaymuseum.util.getDisplayWidth
 import com.omsk.railwaymuseum.viewmodels.HomeViewModel
@@ -28,6 +29,7 @@ const val SLIDER_SHOW_DELAY = 3000L
 const val EVENT_NET_GOAL_TYPE = "event"
 const val INTERESTING_NET_GOAL_TYPE = "interesting"
 const val EXHIBIT_NET_GOAL_TYPE = "exhibit"
+const val INFO_REQUEST = "${BASE_URL}mobile.php?goal=info"
 
 class HomeFragment : Fragment() {
 
@@ -104,6 +106,7 @@ class HomeFragment : Fragment() {
                     R.string.name_section_exhibit -> HomeFragmentDirections
                             .actionHomeFragmentToEventListFragment(EXHIBIT_NET_GOAL_TYPE)
                     R.string.name_section_game -> HomeFragmentDirections.actionHomeFragmentToGameFragment()
+                    R.string.name_section_info -> HomeFragmentDirections.actionHomeFragmentToDetailPageFragment(INFO_REQUEST)
                     else -> null
                 }
                 actionToAfterClick?.let { findNavController().navigate(it) }
