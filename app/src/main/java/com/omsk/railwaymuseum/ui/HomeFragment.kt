@@ -80,8 +80,8 @@ class HomeFragment : Fragment() {
                     sliderShow.addSlider(sliderView)
                 }
                 sliderShow.startAutoCycle(SLIDER_ANIMATION_START_DELAY,
-                                        SLIDER_ANIMATION_DURATION,
-                                        true)
+                        SLIDER_ANIMATION_DURATION,
+                        true)
 
                 //Задержка появления слайдера, чтобы пользователь не видел процесса загрузки
                 //  изображений в слайдер, т.к. это выглядит некрасиво.
@@ -98,7 +98,7 @@ class HomeFragment : Fragment() {
         homeSectionRecyclerView.adapter = adapter
         adapter.setListener(object : HomeRecyclerAdapter.Listener {
             override fun onClick(itemData: HomeSectionModel) {
-                val actionToAfterClick = when(itemData.name) {
+                val actionToAfterClick = when (itemData.name) {
                     R.string.name_section_event -> HomeFragmentDirections
                             .actionHomeFragmentToEventListFragment(EVENT_NET_GOAL_TYPE)
                     R.string.name_section_interesting -> HomeFragmentDirections
@@ -107,6 +107,7 @@ class HomeFragment : Fragment() {
                             .actionHomeFragmentToEventListFragment(EXHIBIT_NET_GOAL_TYPE)
                     R.string.name_section_game -> HomeFragmentDirections.actionHomeFragmentToGameFragment()
                     R.string.name_section_info -> HomeFragmentDirections.actionHomeFragmentToDetailPageFragment(INFO_REQUEST)
+                    R.string.name_section_review -> HomeFragmentDirections.actionHomeFragmentToReviewFragment()
                     else -> null
                 }
                 actionToAfterClick?.let { findNavController().navigate(it) }

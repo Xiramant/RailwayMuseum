@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="reviewModel"
+            type="com.omsk.railwaymuseum.net.review.ReviewModel" />
+        <variable
+            name="clickListener"
+            type="com.omsk.railwaymuseum.ui.review.ClickListenerReviewDetail" />
+    </data>
+
+    <!--    Без FrameLayout карточки "складываются" по высоте-->
+    <FrameLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_game_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardElevation="1dp"
+            android:layout_margin="2dp"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="7dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="3dp">
+
+                <TextView
+                    android:id="@+id/review_nickname"
+                    android:text="@{reviewModel.nickname}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:gravity="start|top"
+                    android:textColor="@color/dark_green"
+                    tools:text="Сушкин Александр"
+                    card_view:layout_constraintTop_toTopOf="parent"
+                    card_view:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/review_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    reviewData="@{reviewModel.data}"
+                    android:textSize="10sp"
+                    tools:text="Создано: 2021.11.02"
+                    card_view:layout_constraintTop_toBottomOf="@+id/review_nickname"
+                    card_view:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/review_text"
+                    android:text="@{reviewModel.text}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:textSize="12sp"
+                    tools:text="Здесь будет написан текст комментария, который должен показать отношение посетителя к выставочному центру омских железнодорожников."
+                    card_view:layout_constraintTop_toBottomOf="@+id/review_date"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintEnd_toEndOf="parent"/>
+
+<!--                <TextView-->
+<!--                    android:id="@+id/review_detail"-->
+<!--                    android:text="@string/review_expand"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="10sp"-->
+<!--                    card_view:layout_constraintTop_toBottomOf="@+id/review_text"-->
+<!--                    card_view:layout_constraintEnd_toEndOf="parent"-->
+<!--                    android:onClick="@{() -> clickListener.onClick(reviewModel.id)}"-->
+<!--                    />-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/review_image"-->
+<!--                    gameQuizImage="@{reviewModel.imageUri}"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="70dp"-->
+<!--                    android:adjustViewBounds="true"-->
+<!--                    android:scaleType="centerInside"-->
+<!--                    tools:srcCompat="@drawable/home_placeholder"-->
+<!--                    card_view:layout_constraintTop_toBottomOf="@+id/review_detail"-->
+<!--                    card_view:layout_constraintStart_toStartOf="parent"-->
+<!--                     />-->
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </FrameLayout>
+</layout>

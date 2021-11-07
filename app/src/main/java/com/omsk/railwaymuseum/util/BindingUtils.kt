@@ -14,8 +14,11 @@ import com.omsk.railwaymuseum.R
 import com.omsk.railwaymuseum.net.event.EventListModel
 import com.omsk.railwaymuseum.net.game.GameListModel
 import com.omsk.railwaymuseum.net.game.GameQuestionsModel
+import com.omsk.railwaymuseum.net.review.ReviewModel
 import com.omsk.railwaymuseum.ui.event.EventListAdapter
 import com.omsk.railwaymuseum.ui.game.GameListAdapter
+import com.omsk.railwaymuseum.ui.review.ReviewAdapter
+import java.sql.Timestamp
 
 private const val START_COUNT = 70
 private const val COUNT_INCREMENT = 10
@@ -193,4 +196,19 @@ fun setGameQuestQuestion(textView: TextView, question: String?) {
     } else {
         textView.text = question
     }
+}
+
+
+
+@BindingAdapter("reviewListData")
+fun bindReviewRecyclerView(recyclerView: RecyclerView, data: List<ReviewModel>?) {
+    val adapter = recyclerView.adapter as ReviewAdapter
+    data?.let {
+        adapter.submitList(data.sortedByDescending { it.data })
+    }
+}
+
+@BindingAdapter("reviewData")
+fun setReviewData(textView: TextView, data: Timestamp) {
+    textView.text = data.toString().split(" ")[0]
 }
