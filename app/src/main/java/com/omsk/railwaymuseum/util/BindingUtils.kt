@@ -137,7 +137,7 @@ fun setGameListDifficultyImage(imgView: ImageView, item: GameListModel) {
 //  использовать обычную функцию.
 fun setGameBackground(imgView: ImageView){
     Glide.with(imgView.context)
-            .load(R.drawable.game_rules_background)
+            .load(R.drawable.app_background)
             .into(imgView)
     imgView.alpha = 0.7F
 }
