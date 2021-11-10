@@ -2,10 +2,14 @@ package com.omsk.railwaymuseum.util
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.util.DisplayMetrics
 import androidx.annotation.NonNull
+import androidx.fragment.app.Fragment
+import com.omsk.railwaymuseum.ui.ImageFullscreenActivity
 
 const val TAG = "MyApp"
+const val IMAGE_FULLSCREEN_ACTIVITY_TAG = "imageUri"
 const val BASE_URL = "http://www.museum55.ru/"
 const val HOME_IMAGE_RATIO = 1080f / 720f
 
@@ -143,4 +147,10 @@ fun String.smartTruncate(length: Int): String {
         builder.append(TEXT_REVIEW_END)
     }
     return builder.toString()
+}
+
+fun showFullscreenImage(fragment: Fragment, uri: String) {
+    val intent = Intent(fragment.activity, ImageFullscreenActivity::class.java)
+    intent.putExtra(IMAGE_FULLSCREEN_ACTIVITY_TAG, uri)
+    fragment.startActivity(intent)
 }

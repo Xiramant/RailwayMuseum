@@ -4,7 +4,6 @@
     package="com.omsk.railwaymuseum">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
@@ -14,16 +13,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        tools:targetApi="23"
         android:theme="@style/Theme.RailwayMuseum"
-        >
+        android:usesCleartextTraffic="true"
+        tools:targetApi="23">
+        <activity
+            android:name=".ui.ImageFullscreenActivity"
+            android:configChanges="orientation|screenSize"/>
         <activity
             android:name=".ui.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

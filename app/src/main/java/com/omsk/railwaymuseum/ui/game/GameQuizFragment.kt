@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.omsk.railwaymuseum.R
 import com.omsk.railwaymuseum.databinding.FragmentGameQuizBinding
 import com.omsk.railwaymuseum.util.setGameBackground
+import com.omsk.railwaymuseum.util.showFullscreenImage
 import com.omsk.railwaymuseum.viewmodels.GameQuestionsViewModel
 
 private const val TOAST_MESSAGE = "Выберите вариант ответа"
@@ -46,6 +47,14 @@ class GameQuizFragment : Fragment() {
         binding.viewModel = viewModel
 
         binding.gameQuizName.text = args.game.name
+
+        binding.gameQuizImage.setOnClickListener {
+            //viewModel.currentGameQuestion.value!!.image - не null, т.к. клик происходит на изображении,
+            // которое загружается по заданному в viewModel.currentGameQuestion.value.image пути,
+            // поэтому если существует изображение по которому кликнули, то существует и
+            // viewModel.currentGameQuestion.value.image
+            showFullscreenImage(this, viewModel.currentGameQuestion.value!!.image)
+        }
 
         binding.gameQuizNext.setOnClickListener {
             val checkedId = binding.gameQuizRadioGroup.checkedRadioButtonId

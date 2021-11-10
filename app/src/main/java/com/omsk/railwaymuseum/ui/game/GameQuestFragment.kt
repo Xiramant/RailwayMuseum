@@ -15,6 +15,7 @@ import androidx.navigation.fragment.navArgs
 import com.blikoon.qrcodescanner.QrCodeActivity
 import com.omsk.railwaymuseum.databinding.FragmentGameQuestBinding
 import com.omsk.railwaymuseum.util.setGameBackground
+import com.omsk.railwaymuseum.util.showFullscreenImage
 import com.omsk.railwaymuseum.viewmodels.GameQuestionsViewModel
 
 
@@ -64,6 +65,10 @@ class GameQuestFragment : Fragment() {
         binding.viewModel = viewModel
 
         binding.gameQuestName.text = args.game.name
+
+        binding.gameQuestImage.setOnClickListener {
+            showFullscreenImage(this, viewModel.currentGameQuestion.value!!.image)
+        }
 
         binding.gameQuestScan.setOnClickListener {
             val intent = Intent(context, QrCodeActivity::class.java)
