@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.lifecycle.ViewModelProvider
@@ -33,17 +34,11 @@ class GameRulesFragment : Fragment() {
         viewModel.response.observe(viewLifecycleOwner, {
             it?.let {
                 if(it.comment.isNotEmpty()) {
-                    binding.gameRulesCommentTitle.visibility = View.VISIBLE
-                    binding.gameRulesCommentDescription.visibility = View.VISIBLE
+                    binding.gameRulesCommentTitle.visibility = VISIBLE
+                    binding.gameRulesCommentDescription.visibility = VISIBLE
                 }
             }
         })
-
-        val fade = AnimationUtils.loadAnimation(context, R.anim.fade_in)
-        binding.gameRulesConstraintText.startAnimation(fade)
-
-        val shoot = AnimationUtils.loadAnimation(context, R.anim.shoot)
-        binding.gameRulesGo.startAnimation(shoot)
 
         return binding.root
     }
@@ -54,6 +49,15 @@ class GameRulesFragment : Fragment() {
 
         viewModel.response.observe(viewLifecycleOwner, {
             it?.let {
+
+                val fade = AnimationUtils.loadAnimation(context, R.anim.fade_in)
+                binding.gameRulesLayoutText.startAnimation(fade)
+                binding.gameRulesLayoutText.visibility = VISIBLE
+
+                val shoot = AnimationUtils.loadAnimation(context, R.anim.shoot)
+                binding.gameRulesGo.startAnimation(shoot)
+                binding.gameRulesGo.visibility = VISIBLE
+
                 val gameRulesCharacterAnim = when(it.type) {
                     view.context.getString(R.string.game_type_quiz) -> AnimationUtils.loadAnimation(context, R.anim.translate_game_rules_character_quiz)
                     view.context.getString(R.string.game_type_quest) -> AnimationUtils.loadAnimation(context, R.anim.translate_game_rules_character_quest)
@@ -61,6 +65,7 @@ class GameRulesFragment : Fragment() {
                     else -> AnimationUtils.loadAnimation(context, R.anim.translate_game_rules_character_quiz)
                 }
                 binding.gameRulesCharacter.startAnimation(gameRulesCharacterAnim)
+                binding.gameRulesCharacter.visibility = VISIBLE
 
                 binding.gameRulesGo.setOnClickListener {view ->
                     val directions = when(it.type) {

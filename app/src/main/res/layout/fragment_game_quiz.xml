@@ -47,13 +47,14 @@
                 android:layout_height="wrap_content"
                 android:text="@string/current_question"
                 tools:text="Текущий вопрос:"
-                app:layout_constraintTop_toBottomOf="@+id/game_quiz_name"
+                app:layout_constraintTop_toTopOf="@+id/game_quiz_question_info"
                 app:layout_constraintStart_toStartOf="parent"/>
 
             <TextView
                 android:id="@+id/game_quiz_question_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:text="@{@string/game_comparison(viewModel.questionIndex, viewModel.questionsNumber)}"
                 tools:text="5 / 10"
                 app:layout_constraintTop_toBottomOf="@+id/game_quiz_name"
@@ -217,9 +218,7 @@
             android:paddingHorizontal="25dp"
             android:paddingVertical="15dp"
             android:text="@string/game_quiz_next"
-            app:backgroundTint="@color/dark_green_transparent"
-            app:strokeColor="#aaffffff"
-            app:strokeWidth="2dp"
+            style="@style/Widget.MaterialComponents.Button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

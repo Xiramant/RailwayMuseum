@@ -3,5 +3,5 @@
     android:interpolator="@android:anim/linear_interpolator"
     android:fromAlpha="0"
     android:toAlpha="1"
-    android:startOffset = "800"
+    android:startOffset = "200"
     android:duration="@android:integer/config_mediumAnimTime"/>

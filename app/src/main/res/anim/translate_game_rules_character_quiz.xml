@@ -5,12 +5,12 @@
     <alpha
         android:fromAlpha="0"
         android:toAlpha="1"
-        android:startOffset = "200"
+        android:startOffset = "500"
         android:duration="500">
     </alpha>
 
     <scale
-        android:startOffset = "200"
+        android:startOffset = "500"
         android:duration="500"
         android:fromXScale="0.5"
         android:fromYScale="0.5"

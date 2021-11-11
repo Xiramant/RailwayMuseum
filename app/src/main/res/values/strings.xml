@@ -19,7 +19,7 @@
     <string name="game_rules_title">Правила игры</string>
     <string name="game_rules_comment_title">Подсказка</string>
     <string name="game_rules_go">Начать</string>
-    <string name="game_rules_description">%1$s\n\nКоличество вопросов: %2$d.</string>
+    <string name="game_rules_question_number">Количество вопросов: %1$d.</string>
     <string name="current_question">Текущий вопрос:</string>
     <string name="right_answers">Правильных ответов:</string>
     <string name="game_time">Время игры:</string>

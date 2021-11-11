@@ -3,5 +3,5 @@
     android:interpolator="@android:anim/overshoot_interpolator"
     android:fromYDelta="200%"
     android:toYDelta="0%"
-    android:startOffset = "1500"
+    android:startOffset = "800"
     android:duration="300" />
