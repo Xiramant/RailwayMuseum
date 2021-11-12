@@ -35,7 +35,7 @@
     <string name="review_adding_nickname">Имя Фамилия</string>
     <string name="review_adding_text">Текст отзыва</string>
     <string name="review_adding_send">Отправить</string>
-    <string name="review_adding_help">Для скрытия клавиатуры нажмите \"Назад\" на телефоне или иконку</string>
+    <string name="review_adding_title">Оставить отзыв</string>
     <string name="review_expand">Показать полностью</string>
 
 </resources>

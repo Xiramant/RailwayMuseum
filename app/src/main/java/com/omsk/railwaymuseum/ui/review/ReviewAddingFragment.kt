@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.omsk.railwaymuseum.databinding.FragmentReviewAddingBinding
 import com.omsk.railwaymuseum.viewmodels.ReviewViewModel
 import com.omsk.railwaymuseum.viewmodels.SUCCESSFUL_RESPONSE
+
 
 class ReviewAddingFragment(val viewModel: ReviewViewModel) : BottomSheetDialogFragment() {
 
@@ -28,14 +30,38 @@ class ReviewAddingFragment(val viewModel: ReviewViewModel) : BottomSheetDialogFr
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.reviewAddingKeyboardHide.setOnClickListener {
-            hideKeyboard(it)
-        }
+        val imm = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+
         binding.reviewAddingInputLayoutNickname.setStartIconOnClickListener {
             hideKeyboard(it)
         }
-        binding.reviewAddingInputLayoutText.setStartIconOnClickListener {
+        binding.reviewAddingInputLayoutReview.setStartIconOnClickListener {
             hideKeyboard(it)
+        }
+
+        binding.reviewAddingInputLayoutNickname.addOnEditTextAttachedListener {nicknameLayout ->
+            nicknameLayout.isEndIconVisible = !binding.reviewAddingTextInputNickname.text.isNullOrEmpty()
+            binding.reviewAddingTextInputNickname.addTextChangedListener {nicknameText ->
+                nicknameLayout.isEndIconVisible = !nicknameText.isNullOrEmpty()
+            }
+        }
+        binding.reviewAddingInputLayoutReview.addOnEditTextAttachedListener {reviewLayout ->
+            reviewLayout.isEndIconVisible = !binding.reviewAddingTextInputReview.text.isNullOrEmpty()
+            binding.reviewAddingTextInputReview.addTextChangedListener {reviewText ->
+                reviewLayout.isEndIconVisible = !reviewText.isNullOrEmpty()
+            }
+        }
+
+        binding.reviewAddingInputLayoutNickname.setEndIconOnClickListener {
+            binding.reviewAddingTextInputReview.requestFocus()
+        }
+
+        binding.reviewAddingInputLayoutReview.setEndIconOnClickListener {
+            hideKeyboard(view)
+            binding.reviewAddingAttach.isFocusable = true
+            binding.reviewAddingAttach.isFocusableInTouchMode = true
+            binding.reviewAddingAttach.requestFocus()
         }
 
         binding.reviewAddingSend.setOnClickListener {
@@ -48,17 +74,13 @@ class ReviewAddingFragment(val viewModel: ReviewViewModel) : BottomSheetDialogFr
 
             viewModel.insertReview(replaceApostrophe(binding.reviewAddingTextInputNickname),
                     replaceApostrophe(binding.reviewAddingTextInputReview))
-
-            //помещение фокуса на кнопку
-//        button.isFocusable = true
-//        button.isFocusableInTouchMode = true
-//        button.requestFocus()
         }
 
         viewModel.reviewInsert.observe(viewLifecycleOwner, {
             it?.let {
-                if(it) {
+                if (it) {
                     Toast.makeText(context, SUCCESSFUL_RESPONSE, Toast.LENGTH_SHORT).show()
+                    hideKeyboard(view)
                     dismiss()
                     viewModel.getReview()
                 }
@@ -79,7 +101,7 @@ class ReviewAddingFragment(val viewModel: ReviewViewModel) : BottomSheetDialogFr
 
     private fun emptynessCheck(textView: TextView, message: String): Boolean {
 
-        if(textView.text!= null && textView.text.toString().isNotEmpty()) {
+        if(!textView.text.isNullOrEmpty()) {
             return false
         }
 
