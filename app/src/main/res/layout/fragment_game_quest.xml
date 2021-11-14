@@ -95,13 +95,14 @@
             <ImageView
                 android:id="@+id/game_quest_image"
                 android:layout_width="wrap_content"
-                android:layout_height="250dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/border"
                 tools:src="@drawable/home_placeholder"
                 android:adjustViewBounds="true"
                 android:layout_marginTop="5dp"
                 android:visibility="gone"
                 gameQuizImage="@{viewModel.currentGameQuestion.image}"
+                maxHeightDp="@{250}"
                 app:layout_constraintTop_toBottomOf="@+id/game_quest_current_question"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>

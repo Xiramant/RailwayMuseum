@@ -3,8 +3,10 @@ package com.omsk.railwaymuseum.util
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.util.DisplayMetrics
 import androidx.annotation.NonNull
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.omsk.railwaymuseum.ui.ImageFullscreenActivity
 
@@ -27,6 +29,7 @@ enum class WebTags(val tag: String) {
     LI_END("</li>");
 }
 
+@RequiresApi(Build.VERSION_CODES.R)
 fun getDisplayHeight(@NonNull context: Context): Int {
     return getMetrics(context).heightPixels
 }
@@ -35,6 +38,7 @@ fun getDisplayHeight(@NonNull activity: Activity): Int {
     return getMetrics(activity).heightPixels
 }
 
+@RequiresApi(Build.VERSION_CODES.R)
 fun getDisplayWidth(@NonNull context: Context): Int {
     return getMetrics(context).widthPixels
 }
@@ -43,6 +47,7 @@ fun getDisplayWidth(@NonNull activity: Activity): Int {
     return getMetrics(activity).widthPixels
 }
 
+@RequiresApi(Build.VERSION_CODES.R)
 fun getDisplayDensity(@NonNull context: Context): Float {
     return getMetrics(context).density
 }
@@ -51,6 +56,7 @@ fun getDisplayDensity(@NonNull activity: Activity): Float {
     return getMetrics(activity).density
 }
 
+@RequiresApi(Build.VERSION_CODES.R)
 fun getDisplayDensityDpi(@NonNull context: Context): Int {
     return getMetrics(context).densityDpi
 }
@@ -59,6 +65,7 @@ fun getDisplayDensityDpi(@NonNull activity: Activity): Int {
     return getMetrics(activity).densityDpi
 }
 
+@RequiresApi(Build.VERSION_CODES.R)
 fun getMetrics(@NonNull context: Context): DisplayMetrics {
     val metrics = DisplayMetrics()
     context.display?.getRealMetrics(metrics)

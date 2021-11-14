@@ -1,5 +1,7 @@
 package com.omsk.railwaymuseum.util
 
+import android.app.Activity
+import android.os.Build
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewTreeObserver
@@ -159,21 +161,47 @@ fun setGameRulesCharacter(imgView: ImageView, gameType: String?) {
     }
 }
 
-
-
-@BindingAdapter("gameQuizImage")
-fun setGameQuizImage(imgView: ImageView, gameImage: String?) {
-    gameImage?.let {
-        if (gameImage == "") {
-            imgView.visibility = GONE
-        } else {
-            imgView.visibility = VISIBLE
+//Значения для ширины и высоты:
+//public static final int MATCH_PARENT = -1;
+//public static final int WRAP_CONTENT = -2;
+//
+//Layout у gameQuiz и gameQuest в течении игры не перегружаются, в них только обновляются данные.
+//  Это привдодит к багу: установленные в imageView ширина и высота = wrap_content приводят к
+//  постепенному уменьшению картинки - размеры предыдущего изображения становятся границами
+//  в которые вписывается текущее изображение. Для устранения этого бага перед загрузкой изображения
+//  в imageView я сбрасываю его высоту и ширину на фиксированные значения, а после загрузки
+//  устанавливаю их обратно во wrap_content. (И после этого делаю изображение видимым.)
+@BindingAdapter(value = ["gameQuizImage", "maxHeightDp"], requireAll = true)
+fun setGameQuizImage(imgView: ImageView, image: String?, maxHeightDp: Int) {
+    imgView.visibility = GONE
+    image?.let {
+        if (image == "") {
+            return
         }
 
-        val imgUrl = "${BASE_URL}${gameImage}"
+        val displayDensity = if (Build.VERSION.SDK_INT >= 30) {
+            getDisplayDensity(imgView.context)
+        } else {
+            getDisplayDensity(imgView.context as Activity)
+        }
+
+        val displayWidth = if (Build.VERSION.SDK_INT >= 30) {
+            getDisplayWidth(imgView.context)
+        } else {
+            getDisplayWidth(imgView.context as Activity)
+        }
+
+        imgView.layoutParams.height = (maxHeightDp * displayDensity).toInt()
+        imgView.layoutParams.width = displayWidth
+
+        val imgUrl = "${BASE_URL}${image}"
         Glide.with(imgView.context)
-                .load(imgUrl)
-                .into(imgView)
+            .load(imgUrl)
+            .into(imgView)
+
+        imgView.layoutParams.height = -2
+        imgView.layoutParams.width = -2
+        imgView.visibility = VISIBLE
     }
 }
 
