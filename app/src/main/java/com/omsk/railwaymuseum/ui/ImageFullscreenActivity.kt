@@ -9,7 +9,6 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
 import com.bumptech.glide.Glide
 import com.omsk.railwaymuseum.R
-import com.omsk.railwaymuseum.util.BASE_URL
 import com.omsk.railwaymuseum.util.IMAGE_FULLSCREEN_ACTIVITY_TAG
 
 //Использована активность вместо фрагмента для возможности поворота изображения в альбомный режим
@@ -17,15 +16,11 @@ class ImageFullscreenActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_image_fullscreen)
 
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-        val insetsControllerCompat = WindowInsetsControllerCompat(window, window.decorView)
-        insetsControllerCompat.systemBarsBehavior = BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-        insetsControllerCompat.hide(systemBars())
+        hideSystemUI()
 
-        val imageUri = "${BASE_URL}${intent.extras!!.getString(IMAGE_FULLSCREEN_ACTIVITY_TAG)}"
+        val imageUri = intent.extras!!.getString(IMAGE_FULLSCREEN_ACTIVITY_TAG)
         val imageView = findViewById<ImageView>(R.id.fullscreen_image)
         Glide.with(imageView.context)
                 .load(imageUri)
@@ -33,6 +28,14 @@ class ImageFullscreenActivity : AppCompatActivity() {
 
         imageView.setOnClickListener {
             super.onBackPressed()
+        }
+    }
+
+    private fun hideSystemUI() {
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        WindowInsetsControllerCompat(window, window.decorView).let { controller ->
+            controller.hide(systemBars())
+            controller.systemBarsBehavior = BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         }
     }
 }

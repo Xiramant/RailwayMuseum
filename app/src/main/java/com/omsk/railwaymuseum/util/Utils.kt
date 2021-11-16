@@ -9,9 +9,10 @@ import androidx.annotation.NonNull
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.omsk.railwaymuseum.ui.ImageFullscreenActivity
+import java.io.File
 
 const val TAG = "MyApp"
-const val IMAGE_FULLSCREEN_ACTIVITY_TAG = "imageUri"
+const val IMAGE_FULLSCREEN_ACTIVITY_TAG = "imageString"
 const val BASE_URL = "http://www.museum55.ru/"
 const val HOME_IMAGE_RATIO = 1080f / 720f
 
@@ -157,7 +158,15 @@ fun String.smartTruncate(length: Int): String {
 }
 
 fun showFullscreenImage(fragment: Fragment, uri: String) {
+    startFullscreenImageActivity(fragment, "${BASE_URL}${uri}")
+}
+
+fun showFullscreenImage(fragment: Fragment, file: File) {
+    startFullscreenImageActivity(fragment, file.toString())
+}
+
+fun startFullscreenImageActivity(fragment: Fragment, imageString: String) {
     val intent = Intent(fragment.activity, ImageFullscreenActivity::class.java)
-    intent.putExtra(IMAGE_FULLSCREEN_ACTIVITY_TAG, uri)
+    intent.putExtra(IMAGE_FULLSCREEN_ACTIVITY_TAG, imageString)
     fragment.startActivity(intent)
 }

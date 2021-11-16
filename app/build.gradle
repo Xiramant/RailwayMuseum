@@ -90,4 +90,7 @@ dependencies {
 
     //QR code scanner
     implementation project(':qrcodescanner')
+
+    //Fotoapparat
+    implementation 'io.fotoapparat:fotoapparat:2.7.0'
 }

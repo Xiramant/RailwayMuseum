@@ -4,13 +4,19 @@ import androidx.lifecycle.*
 import com.omsk.railwaymuseum.net.review.ReviewApi
 import com.omsk.railwaymuseum.net.review.ReviewInsertApi
 import com.omsk.railwaymuseum.net.review.ReviewModel
+import com.omsk.railwaymuseum.ui.review.EXTENSION_WHITELIST
 import kotlinx.coroutines.launch
+import java.io.File
 
 const val REVIEW_INSERT_GOAL = "review_insert"
 const val SUCCESSFUL_RESPONSE = "Отзыв успешно добавлен в систему."
 const val UNSUCCESSFUL_RESULT = "Ошибка передачи данных."
 
 class ReviewViewModel: ViewModel() {
+
+    private val _imageList = MutableLiveData<List<File>>()
+    val imageList: LiveData<List<File>>
+        get() = _imageList
 
     private val _response = MutableLiveData<List<ReviewModel>>()
     val response: LiveData<List<ReviewModel>>
@@ -26,6 +32,14 @@ class ReviewViewModel: ViewModel() {
 
     init {
         getReview()
+    }
+
+    fun setImageList(imagesDirectory: File) {
+        if(imagesDirectory.exists()) {
+            _imageList.value = imagesDirectory.listFiles { file ->
+                EXTENSION_WHITELIST.contains(file.extension.uppercase())}
+                ?.toList()
+        }
     }
 
     fun getReview() {

@@ -20,6 +20,8 @@ import com.omsk.railwaymuseum.net.review.ReviewModel
 import com.omsk.railwaymuseum.ui.event.EventListAdapter
 import com.omsk.railwaymuseum.ui.game.GameListAdapter
 import com.omsk.railwaymuseum.ui.review.ReviewAdapter
+import com.omsk.railwaymuseum.ui.review.ReviewAddingAdapter
+import java.io.File
 import java.sql.Timestamp
 
 private const val START_COUNT = 70
@@ -239,4 +241,26 @@ fun bindReviewRecyclerView(recyclerView: RecyclerView, data: List<ReviewModel>?)
 @BindingAdapter("reviewData")
 fun setReviewData(textView: TextView, data: Timestamp) {
     textView.text = data.toString().split(" ")[0]
+}
+
+
+
+@BindingAdapter("reviewAddingData")
+fun bindReviewAddingData(recyclerView: RecyclerView, data: List<File>?) {
+    if(data.isNullOrEmpty()) {
+        recyclerView.visibility = GONE
+    } else {
+        val adapter = recyclerView.adapter as ReviewAddingAdapter
+        adapter.submitList(data)
+        recyclerView.visibility = VISIBLE
+    }
+}
+
+@BindingAdapter("reviewAddingImage")
+fun setReviewAddingImage(imgView: ImageView, imageFile: File?) {
+    imageFile?.let {
+        Glide.with(imgView.context)
+            .load(it)
+            .into(imgView)
+    }
 }

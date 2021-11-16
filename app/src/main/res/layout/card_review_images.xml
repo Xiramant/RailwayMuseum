@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="imageFile"
+            type="java.io.File" />
+        <variable
+            name="clickListener"
+            type="com.omsk.railwaymuseum.ui.review.ClickListenerImageFull" />
+        <variable
+            name="clickListenerDelete"
+            type="com.omsk.railwaymuseum.ui.review.ClickListenerImageDelete" />
+    </data>
+
+<!--    Без FrameLayout карточки "складываются"     -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            card_view:cardCornerRadius="2dp"
+            card_view:cardElevation="1dp"
+            android:layout_margin="1dp"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/card_review_images_photo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:adjustViewBounds="true"
+                    reviewAddingImage="@{imageFile}"
+                    tools:src="@drawable/home_placeholder"
+                    card_view:layout_constraintBottom_toBottomOf="parent"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent"
+                    android:onClick="@{() -> clickListener.onClick(imageFile)}"
+                    />
+
+                <ImageView
+                    android:id="@+id/event_list_image"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/icon_close"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginVertical="2dp"
+                    card_view:layout_constraintEnd_toEndOf="@+id/card_review_images_photo"
+                    card_view:layout_constraintTop_toTopOf="@+id/card_review_images_photo"
+                    android:onClick="@{() -> clickListenerDelete.onClick(imageFile)}"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </FrameLayout>
+</layout>
