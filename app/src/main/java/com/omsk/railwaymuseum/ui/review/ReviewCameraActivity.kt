@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -32,6 +33,7 @@ class ReviewCameraActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityReviewCameraBinding
     private lateinit var imagesDirectory: File
+    private lateinit var androidId: String
 
     private var fotoapparat: Fotoapparat? = null
     private var fotoapparatState : FotoapparatState? = null
@@ -45,6 +47,10 @@ class ReviewCameraActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityReviewCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        androidId = Settings.System.getString(baseContext.contentResolver,
+            Settings.Secure.ANDROID_ID
+        )
 
         imagesDirectory = File("${applicationContext.filesDir}/${REVIEW_IMAGES_TAG}")
         imagesDirectory.mkdirs()
@@ -110,7 +116,7 @@ class ReviewCameraActivity : AppCompatActivity() {
             val permissions = arrayOf(Manifest.permission.CAMERA)
             ActivityCompat.requestPermissions(this, permissions,0)
         }else{
-            photoFile = createFile(imagesDirectory)
+            photoFile = createFile(imagesDirectory, androidId)
             photoFile?.let {
                 fotoapparat
                     ?.takePicture()
@@ -169,13 +175,13 @@ class ReviewCameraActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
+        private const val FILENAME_FORMAT = "yyyy-MM-dd_HH-mm-ss_SSS"
         private const val PHOTO_EXTENSION = ".jpg"
         const val REVIEW_IMAGES_TAG = "review-images"
 
         //Helper function used to create a timestamped file
-        private fun createFile(baseFolder: File) =
-            File(baseFolder, SimpleDateFormat(FILENAME_FORMAT, Locale.US)
+        private fun createFile(baseFolder: File, androidId: String) =
+            File(baseFolder, androidId + "_" + SimpleDateFormat(FILENAME_FORMAT, Locale.US)
                 .format(System.currentTimeMillis()) + PHOTO_EXTENSION)
     }
 }
