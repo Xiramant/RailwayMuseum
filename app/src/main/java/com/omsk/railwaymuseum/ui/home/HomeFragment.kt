@@ -1,4 +1,4 @@
-package com.omsk.railwaymuseum.ui
+package com.omsk.railwaymuseum.ui.home
 
 import android.os.Build
 import android.os.Bundle
@@ -15,8 +15,8 @@ import com.glide.slider.library.SliderLayout
 import com.glide.slider.library.slidertypes.DefaultSliderView
 import com.omsk.railwaymuseum.R
 import com.omsk.railwaymuseum.data.HomeSectionModel
-import com.omsk.railwaymuseum.util.BASE_URL
 import com.omsk.railwaymuseum.util.HOME_IMAGE_RATIO
+import com.omsk.railwaymuseum.util.PHP_URL
 import com.omsk.railwaymuseum.util.getDisplayWidth
 import com.omsk.railwaymuseum.viewmodels.HomeViewModel
 import kotlinx.coroutines.MainScope
@@ -26,10 +26,10 @@ import kotlinx.coroutines.launch
 const val SLIDER_ANIMATION_START_DELAY = 7000L
 const val SLIDER_ANIMATION_DURATION = 7000L
 const val SLIDER_SHOW_DELAY = 3000L
-const val EVENT_NET_GOAL_TYPE = "event"
-const val INTERESTING_NET_GOAL_TYPE = "interesting"
-const val EXHIBIT_NET_GOAL_TYPE = "exhibit"
-const val INFO_REQUEST = "${BASE_URL}mobile.php?goal=info"
+const val EVENT_NET_TYPE = "event"
+const val INTERESTING_NET_TYPE = "interesting"
+const val EXHIBIT_NET_TYPE = "exhibit"
+const val INFO_REQUEST = "${PHP_URL}info.php"
 
 class HomeFragment : Fragment() {
 
@@ -79,7 +79,8 @@ class HomeFragment : Fragment() {
                     sliderView.image(homeSliderImage.uri)
                     sliderShow.addSlider(sliderView)
                 }
-                sliderShow.startAutoCycle(SLIDER_ANIMATION_START_DELAY,
+                sliderShow.startAutoCycle(
+                    SLIDER_ANIMATION_START_DELAY,
                         SLIDER_ANIMATION_DURATION,
                         true)
 
@@ -100,13 +101,15 @@ class HomeFragment : Fragment() {
             override fun onClick(itemData: HomeSectionModel) {
                 val actionToAfterClick = when (itemData.name) {
                     R.string.name_section_event -> HomeFragmentDirections
-                            .actionHomeFragmentToEventListFragment(EVENT_NET_GOAL_TYPE)
+                            .actionHomeFragmentToEventListFragment(EVENT_NET_TYPE)
                     R.string.name_section_interesting -> HomeFragmentDirections
-                            .actionHomeFragmentToEventListFragment(INTERESTING_NET_GOAL_TYPE)
+                            .actionHomeFragmentToEventListFragment(INTERESTING_NET_TYPE)
                     R.string.name_section_exhibit -> HomeFragmentDirections
-                            .actionHomeFragmentToEventListFragment(EXHIBIT_NET_GOAL_TYPE)
+                            .actionHomeFragmentToEventListFragment(EXHIBIT_NET_TYPE)
                     R.string.name_section_game -> HomeFragmentDirections.actionHomeFragmentToGameFragment()
-                    R.string.name_section_info -> HomeFragmentDirections.actionHomeFragmentToDetailPageFragment(INFO_REQUEST)
+                    R.string.name_section_info -> HomeFragmentDirections.actionHomeFragmentToDetailPageFragment(
+                        INFO_REQUEST
+                    )
                     R.string.name_section_review -> HomeFragmentDirections.actionHomeFragmentToReviewFragment()
                     else -> null
                 }

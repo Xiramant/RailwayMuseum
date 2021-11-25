@@ -1,7 +1,7 @@
 package com.omsk.railwaymuseum.net.review
 
 import com.google.gson.GsonBuilder
-import com.omsk.railwaymuseum.util.BASE_URL
+import com.omsk.railwaymuseum.util.PHP_URL
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
@@ -21,18 +21,18 @@ private val client = OkHttpClient.Builder()
 
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(GsonConverterFactory.create(gson))
-    .baseUrl(BASE_URL)
+    .baseUrl(PHP_URL)
     .client(client)
     .build()
 
 interface ReviewApiService {
-    @GET("mobile.php?goal=review_list")
+    @GET("reviews.php")
     suspend fun getReviewApi(): List<ReviewModel>
 }
 
 interface ReviewInsertApiService {
     @FormUrlEncoded
-    @POST("scripts/mobile/review_insert.php")
+    @POST("review_insert.php")
     suspend fun insertReviewApi(@Field("name") name: String,
                                 @Field("review") review: String,
                                 @Field("android_id") androidId: String,
@@ -42,7 +42,7 @@ interface ReviewInsertApiService {
 
 interface ReviewUploadApiService {
     @Multipart
-    @POST("scripts/mobile/review_upload_image.php")
+    @POST("review_upload_image.php")
     suspend fun uploadFileApi(@Part file: MultipartBody.Part?,
                               @Part("file") name: RequestBody?
     ): String

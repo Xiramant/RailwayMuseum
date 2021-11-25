@@ -1,4 +1,4 @@
-package com.omsk.railwaymuseum.net
+package com.omsk.railwaymuseum.net.slider
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

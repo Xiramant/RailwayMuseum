@@ -9,10 +9,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.omsk.railwaymuseum.databinding.FragmentEventListBinding
-import com.omsk.railwaymuseum.util.BASE_URL
+import com.omsk.railwaymuseum.util.PHP_URL
 import com.omsk.railwaymuseum.viewmodels.EventListViewModel
 
-const val DETAIL_REQUEST = "${BASE_URL}mobile.php?goal=section&id="
+const val DETAIL_REQUEST = "${PHP_URL}section_id.php?id="
 
 class EventListFragment : Fragment() {
 

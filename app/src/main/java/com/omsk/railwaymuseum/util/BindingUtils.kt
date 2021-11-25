@@ -197,7 +197,7 @@ fun setGameQuizImage(imgView: ImageView, image: String?, maxHeightDp: Int) {
         imgView.layoutParams.height = (maxHeightDp * displayDensity).toInt()
         imgView.layoutParams.width = displayWidth
 
-        val imgUrl = "${BASE_URL}${image}"
+        val imgUrl = "${BASE_URL}${it}"
         Glide.with(imgView.context)
             .load(imgUrl)
             .into(imgView)

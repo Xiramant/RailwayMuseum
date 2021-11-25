@@ -1,7 +1,7 @@
 package com.omsk.railwaymuseum.viewmodels
 
 import androidx.lifecycle.*
-import com.omsk.railwaymuseum.net.game.GameQuestionsApi
+import com.omsk.railwaymuseum.net.game.GameApi
 import com.omsk.railwaymuseum.net.game.GameQuestionsModel
 import com.omsk.railwaymuseum.net.game.GameRulesModel
 import kotlinx.coroutines.launch
@@ -40,7 +40,7 @@ class GameQuestionsViewModel(private val game: GameRulesModel): ViewModel() {
     private fun getGameQuestions() {
         viewModelScope.launch {
             try {
-                fullQuestionList = GameQuestionsApi.retrofitService.getGameQuestionsApi(game.id)
+                fullQuestionList = GameApi.retrofitQuestionService.getGameQuestionsApi(game.id)
                 shuffledAndSetQuestList()
             } catch (e: Exception) {
                 gameQuestionList = ArrayList()

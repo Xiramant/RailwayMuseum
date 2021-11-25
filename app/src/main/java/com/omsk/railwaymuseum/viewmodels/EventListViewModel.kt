@@ -5,7 +5,7 @@ import com.omsk.railwaymuseum.net.event.EventListApi
 import com.omsk.railwaymuseum.net.event.EventListModel
 import kotlinx.coroutines.launch
 
-class EventListViewModel(private val netGoalType: String): ViewModel() {
+class EventListViewModel(private val netType: String): ViewModel() {
 
     private val _response = MutableLiveData<List<EventListModel>>()
 
@@ -19,7 +19,7 @@ class EventListViewModel(private val netGoalType: String): ViewModel() {
     private fun getEventList() {
         viewModelScope.launch {
             try {
-                _response.value = EventListApi.retrofitService.getEventListApi(netGoalType)
+                _response.value = EventListApi.retrofitService.getEventListApi(netType)
             } catch (e: Exception) {
                 _response.value = ArrayList()
             }
@@ -28,11 +28,11 @@ class EventListViewModel(private val netGoalType: String): ViewModel() {
 
 
 
-    class Factory(private val netGoalType: String): ViewModelProvider.Factory {
+    class Factory(private val netType: String): ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(EventListViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return EventListViewModel(netGoalType) as T
+                return EventListViewModel(netType) as T
             }
             throw IllegalArgumentException("Unable to construct EventListViewModel")
         }

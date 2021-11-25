@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.omsk.railwaymuseum.net.HomeSliderImageApi
-import com.omsk.railwaymuseum.net.HomeSliderImageModel
+import com.omsk.railwaymuseum.net.slider.HomeSliderImageApi
+import com.omsk.railwaymuseum.net.slider.HomeSliderImageModel
 import kotlinx.coroutines.launch
 
 class HomeViewModel: ViewModel() {

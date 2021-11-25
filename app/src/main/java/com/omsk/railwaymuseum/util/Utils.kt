@@ -14,6 +14,7 @@ import java.io.File
 const val TAG = "MyApp"
 const val IMAGE_FULLSCREEN_ACTIVITY_TAG = "imageString"
 const val BASE_URL = "http://www.museum55.ru/"
+const val PHP_URL = "${BASE_URL}scripts/mobile/"
 const val HOME_IMAGE_RATIO = 1080f / 720f
 
 private const val LI_REPLACEMENT = "- "

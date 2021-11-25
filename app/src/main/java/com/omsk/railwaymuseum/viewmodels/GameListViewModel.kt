@@ -1,7 +1,7 @@
 package com.omsk.railwaymuseum.viewmodels
 
 import androidx.lifecycle.*
-import com.omsk.railwaymuseum.net.game.GameListApi
+import com.omsk.railwaymuseum.net.game.GameApi
 import com.omsk.railwaymuseum.net.game.GameListModel
 import kotlinx.coroutines.launch
 
@@ -19,7 +19,7 @@ class GameListViewModel: ViewModel() {
     private fun getGameList() {
         viewModelScope.launch {
             try {
-                _response.value = GameListApi.retrofitService.getGameListApi()
+                _response.value = GameApi.retrofitListService.getGameListApi()
             } catch (e: Exception) {
                 _response.value = ArrayList()
             }

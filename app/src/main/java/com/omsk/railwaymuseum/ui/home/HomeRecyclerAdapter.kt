@@ -1,4 +1,4 @@
-package com.omsk.railwaymuseum.ui
+package com.omsk.railwaymuseum.ui.home
 
 import android.content.Context
 import android.os.Build
