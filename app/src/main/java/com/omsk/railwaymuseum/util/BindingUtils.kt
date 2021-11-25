@@ -21,6 +21,7 @@ import com.omsk.railwaymuseum.ui.event.EventListAdapter
 import com.omsk.railwaymuseum.ui.game.GameListAdapter
 import com.omsk.railwaymuseum.ui.review.ReviewAdapter
 import com.omsk.railwaymuseum.ui.review.ReviewAddingAdapter
+import com.omsk.railwaymuseum.ui.review.ReviewImageListAdapter
 import java.io.File
 import java.sql.Timestamp
 
@@ -244,6 +245,26 @@ fun setReviewData(textView: TextView, data: Timestamp) {
 }
 
 
+
+@BindingAdapter("reviewImageList")
+fun bindReviewImageList(recyclerView: RecyclerView, data: List<String>?) {
+    if(data.isNullOrEmpty()) {
+        recyclerView.visibility = GONE
+    } else {
+        val adapter = recyclerView.adapter as ReviewImageListAdapter
+        adapter.submitList(data)
+        recyclerView.visibility = VISIBLE
+    }
+}
+
+@BindingAdapter("reviewAddingUriImage")
+fun setReviewAddingUriImage(imgView: ImageView, imageUri: String?) {
+    imageUri?.let {
+        Glide.with(imgView.context)
+            .load("$BASE_URL$it")
+            .into(imgView)
+    }
+}
 
 @BindingAdapter("reviewAddingData")
 fun bindReviewAddingData(recyclerView: RecyclerView, data: List<File>?) {

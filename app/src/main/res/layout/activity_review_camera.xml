@@ -17,6 +17,16 @@
             android:layout_height="match_parent"
             android:layout_above="@id/fab_camera"/>
 
+        <ImageView
+            android:id="@+id/camera_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_review_back"
+            android:layout_margin="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_flash"
             android:layout_width="wrap_content"

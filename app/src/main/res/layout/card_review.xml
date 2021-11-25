@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -79,17 +80,19 @@
 <!--                    android:onClick="@{() -> clickListener.onClick(reviewModel.id)}"-->
 <!--                    />-->
 
-<!--                <ImageView-->
-<!--                    android:id="@+id/review_image"-->
-<!--                    gameQuizImage="@{reviewModel.imageUri}"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="70dp"-->
-<!--                    android:adjustViewBounds="true"-->
-<!--                    android:scaleType="centerInside"-->
-<!--                    tools:srcCompat="@drawable/home_placeholder"-->
-<!--                    card_view:layout_constraintTop_toBottomOf="@+id/review_detail"-->
-<!--                    card_view:layout_constraintStart_toStartOf="parent"-->
-<!--                     />-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/review_images_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="4dp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="1"
+                    android:orientation="horizontal"
+                    reviewImageList="@{reviewModel.imagesUriList}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/review_text"
+                    />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>

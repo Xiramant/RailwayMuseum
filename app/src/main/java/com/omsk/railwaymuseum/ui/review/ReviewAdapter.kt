@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.omsk.railwaymuseum.databinding.CardReviewBinding
 import com.omsk.railwaymuseum.net.review.ReviewModel
+import com.omsk.railwaymuseum.util.showFullscreenImage
 
-class ReviewAdapter(private val clickListenerDetail: ClickListenerReviewDetail):
+class ReviewAdapter(private val clickListenerDetail: ClickListenerReviewDetail,
+                    private val fragment: ReviewFragment):
     ListAdapter<ReviewModel, ReviewAdapter.ViewHolder>(DiffCallback){
 
     companion object DiffCallback : DiffUtil.ItemCallback<ReviewModel>() {
@@ -30,10 +32,11 @@ class ReviewAdapter(private val clickListenerDetail: ClickListenerReviewDetail):
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val dataItem = getItem(position)
-        holder.bind(dataItem, clickListenerDetail)
+        holder.bind(dataItem, clickListenerDetail, fragment)
     }
 
-    class ViewHolder private constructor(private val binding: CardReviewBinding): RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder private constructor(private val binding: CardReviewBinding)
+                                        : RecyclerView.ViewHolder(binding.root) {
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
@@ -42,9 +45,15 @@ class ReviewAdapter(private val clickListenerDetail: ClickListenerReviewDetail):
             }
         }
 
-        fun bind(dataItem: ReviewModel, clickListenerReviewDetail: ClickListenerReviewDetail) {
+        fun bind(dataItem: ReviewModel,
+                clickListenerReviewDetail: ClickListenerReviewDetail,
+                 fragment: ReviewFragment) {
             binding.reviewModel = dataItem
             binding.clickListener = clickListenerReviewDetail
+            binding.reviewImagesRecycler.adapter = ReviewImageListAdapter(ClickListenerReviewImageFull {
+                showFullscreenImage(fragment, it)
+            })
+            binding.reviewImagesRecycler.setHasFixedSize(true)
             binding.executePendingBindings()
         }
     }

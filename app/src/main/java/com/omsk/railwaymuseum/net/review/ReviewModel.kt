@@ -16,9 +16,11 @@ data class ReviewModel(
 
     @field:Expose
     @field:SerializedName("image")
-    val imageUri: String,
+    val imagesUriUnion: String,
 
     @field:Expose
     @field:SerializedName("date_modify")
-    val data: Timestamp
+    val data: Timestamp,
+
+    var imagesUriList: List<String>
 )
