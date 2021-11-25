@@ -70,6 +70,10 @@ class GameQuestFragment : Fragment() {
             showFullscreenImage(this, viewModel.currentGameQuestion.value!!.image)
         }
 
+        binding.gameQuestScip.setOnClickListener {
+            viewModel.setQuestion()
+        }
+
         binding.gameQuestScan.setOnClickListener {
             val intent = Intent(context, QrCodeActivity::class.java)
             resultLauncher.launch(intent)
