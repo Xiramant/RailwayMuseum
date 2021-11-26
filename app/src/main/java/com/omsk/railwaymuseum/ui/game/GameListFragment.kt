@@ -13,7 +13,7 @@ import com.omsk.railwaymuseum.viewmodels.GameListViewModel
 class GameListFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View {
 
         val binding = FragmentGameListBinding.inflate(inflater)
         val viewModel = ViewModelProvider(this, GameListViewModel.Factory()).get(GameListViewModel:: class.java)
@@ -29,6 +29,7 @@ class GameListFragment : Fragment() {
         binding.viewModel = viewModel
 
         binding.gameListRecycler.adapter = adapter
+        binding.gameListRecycler.setHasFixedSize(true)
 
         return binding.root
     }

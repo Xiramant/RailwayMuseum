@@ -40,6 +40,7 @@ class EventListFragment : Fragment() {
         //данные связываются и передаются в recycler view через binding utils и xml
 
         binding.eventListRecycler.adapter = adapter
+        binding.eventListRecycler.setHasFixedSize(true)
 
         return binding.root
     }
