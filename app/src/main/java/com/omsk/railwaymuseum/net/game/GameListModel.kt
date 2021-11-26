@@ -11,6 +11,10 @@ data class GameListModel(
         val name: String,
 
         @field:Expose
+        @field:SerializedName("image_preview")
+        val imagePreview: String,
+
+        @field:Expose
         val type: String,
 
         @field:Expose

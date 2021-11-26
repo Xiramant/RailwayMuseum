@@ -103,11 +103,15 @@ fun bindGameRecyclerView(recyclerView: RecyclerView, data: List<GameListModel>?)
 
 @BindingAdapter("gameListImage")
 fun setGameListImage(imgView: ImageView, item: GameListModel) {
-    val image = when(item.type) {
-        imgView.context.getString(R.string.game_type_quiz) -> R.drawable.icon_game_quiz
-        imgView.context.getString(R.string.game_type_quest) -> R.drawable.icon_game_quest
-        imgView.context.getString(R.string.game_type_fragment) -> R.drawable.icon_game_fragment
-        else -> R.drawable.icon_game_question
+    val image = if(item.imagePreview.isNotEmpty()) {
+        "${BASE_URL}${item.imagePreview}"
+    } else {
+        when (item.type) {
+            imgView.context.getString(R.string.game_type_quiz) -> R.drawable.icon_game_quiz
+            imgView.context.getString(R.string.game_type_quest) -> R.drawable.icon_game_quest
+            imgView.context.getString(R.string.game_type_fragment) -> R.drawable.icon_game_fragment
+            else -> R.drawable.icon_game_question
+        }
     }
     Glide.with(imgView.context)
             .load(image)
