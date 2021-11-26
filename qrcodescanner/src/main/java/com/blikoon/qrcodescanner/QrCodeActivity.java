@@ -1,6 +1,7 @@
 package com.blikoon.qrcodescanner;
 
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,6 +12,7 @@ import android.database.Cursor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -28,7 +30,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.zxing.Result;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import com.blikoon.qrcodescanner.camera.CameraManager;
 import com.blikoon.qrcodescanner.decode.CaptureActivityHandler;
 import com.blikoon.qrcodescanner.decode.DecodeImageCallback;
@@ -36,14 +42,16 @@ import com.blikoon.qrcodescanner.decode.DecodeImageThread;
 import com.blikoon.qrcodescanner.decode.DecodeManager;
 import com.blikoon.qrcodescanner.decode.InactivityTimer;
 import com.blikoon.qrcodescanner.view.QrCodeFinderView;
+import com.google.zxing.Result;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
+import java.lang.reflect.Array;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 
-public class QrCodeActivity extends Activity implements Callback, OnClickListener {
+public class QrCodeActivity extends AppCompatActivity implements Callback, OnClickListener {
 
     private static final int REQUEST_SYSTEM_PICTURE = 0;
     private static final int REQUEST_PICTURE = 1;
@@ -51,6 +59,7 @@ public class QrCodeActivity extends Activity implements Callback, OnClickListene
     public static final int MSG_DECODE_FAIL = 2;
     private CaptureActivityHandler mCaptureActivityHandler;
     private boolean mHasSurface;
+    private final String[] permissions = new String[]{Manifest.permission.CAMERA};
     private boolean mPermissionOk;
     private InactivityTimer mInactivityTimer;
     private QrCodeFinderView mQrCodeFinderView;
@@ -96,19 +105,18 @@ public class QrCodeActivity extends Activity implements Callback, OnClickListene
 
     }
 
-    private void checkPermission() {
+    private boolean checkPermission() {
         boolean hasHardware = checkCameraHardWare(this);
         if (hasHardware) {
             if (!hasCameraPermission()) {
                 findViewById(R.id.qr_code_view_background).setVisibility(View.VISIBLE);
                 mQrCodeFinderView.setVisibility(View.GONE);
-                mPermissionOk = false;
+                return false;
             } else {
-                mPermissionOk = true;
+                return true;
             }
         } else {
-            mPermissionOk = false;
-            finish();
+            return false;
         }
     }
 
@@ -136,31 +144,51 @@ public class QrCodeActivity extends Activity implements Callback, OnClickListene
         return PackageManager.PERMISSION_GRANTED == pm.checkPermission("android.permission.CAMERA", getPackageName());
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
+    protected void onStart() {
+        super.onStart();
+        if (!hasCameraPermission()) {
+            ActivityCompat.requestPermissions(this, permissions,27);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == 27) {
+            if(grantResults.length == 1
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // We can now safely use the API we requested access to
+                System.out.println("Разрешение получено, перезапускаем активность");
+                Intent intent = new Intent(this, QrCodeActivity.class);
+                startActivity(intent);
+                finish();
+            }else {
+                mDecodeManager.showPermissionDeniedDialog(this);
+            }
+        }
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
-        checkPermission();
-        if (!mPermissionOk) {
-            mDecodeManager.showPermissionDeniedDialog(this);
-            return;
-        }
-        SurfaceHolder surfaceHolder = mSurfaceView.getHolder();
-        turnFlashLightOff();
-        if (mHasSurface) {
-            initCamera(surfaceHolder);
-        } else {
-            surfaceHolder.addCallback(this);
-            surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-        }
+        if (checkPermission()) {
+            SurfaceHolder surfaceHolder = mSurfaceView.getHolder();
+            turnFlashLightOff();
+            if (mHasSurface) {
+                initCamera(surfaceHolder);
+            } else {
+                surfaceHolder.addCallback(this);
+                surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+            }
 
-        mPlayBeep = true;
-        AudioManager audioService = (AudioManager) getSystemService(AUDIO_SERVICE);
-        if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
-            mPlayBeep = false;
+            mPlayBeep = true;
+            AudioManager audioService = (AudioManager) getSystemService(AUDIO_SERVICE);
+            if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
+                mPlayBeep = false;
+            }
+            initBeepSound();
+            mVibrate = true;
         }
-        initBeepSound();
-        mVibrate = true;
-
     }
 
     @Override
