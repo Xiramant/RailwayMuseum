@@ -49,7 +49,7 @@ class GameQuestionsViewModel(private val game: GameRulesModel): ViewModel() {
     }
 
     private fun shuffledAndSetQuestList() {
-        gameQuestionList = fullQuestionList.shuffled()
+        gameQuestionList = if(game.isShuffle == 1) fullQuestionList.shuffled() else fullQuestionList
         setQuestion()
     }
 

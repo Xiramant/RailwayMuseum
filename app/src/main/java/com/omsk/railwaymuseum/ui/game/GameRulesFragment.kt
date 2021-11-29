@@ -7,11 +7,13 @@ import android.view.View
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.omsk.railwaymuseum.R
 import com.omsk.railwaymuseum.databinding.FragmentGameRulesBinding
+import com.omsk.railwaymuseum.net.game.getEmptyGameRulesModel
 import com.omsk.railwaymuseum.util.setGameBackground
 import com.omsk.railwaymuseum.viewmodels.GameRulesViewModel
 
@@ -20,7 +22,7 @@ class GameRulesFragment : Fragment() {
     private val args: GameRulesFragmentArgs by navArgs()
     private lateinit var binding : FragmentGameRulesBinding
     private val viewModel: GameRulesViewModel by lazy { ViewModelProvider(this, GameRulesViewModel.Factory(args.gameId)).get(GameRulesViewModel:: class.java) }
-
+    private val errorMessage = "Не удалось загрузить данные с сервера"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -33,6 +35,12 @@ class GameRulesFragment : Fragment() {
 
         viewModel.response.observe(viewLifecycleOwner, {
             it?.let {
+                if(it == getEmptyGameRulesModel()) {
+                    Toast.makeText(binding.root.context,
+                        errorMessage,
+                        Toast.LENGTH_SHORT).show()
+                }
+
                 if(it.comment.isNotEmpty()) {
                     binding.gameRulesCommentTitle.visibility = VISIBLE
                     binding.gameRulesCommentDescription.visibility = VISIBLE

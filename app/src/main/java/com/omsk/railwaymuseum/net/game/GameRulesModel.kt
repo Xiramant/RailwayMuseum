@@ -26,5 +26,13 @@ data class GameRulesModel(
 
         @field:Expose
         @field:SerializedName("questions_number")
-        val questionsNumber: Int
+        val questionsNumber: Int,
+
+        @field:Expose
+        @field:SerializedName("is_shuffle")
+        val isShuffle: Int
 ): Parcelable
+
+fun getEmptyGameRulesModel() : GameRulesModel {
+        return GameRulesModel(-1, "", "", "", "", -1, -1)
+}
