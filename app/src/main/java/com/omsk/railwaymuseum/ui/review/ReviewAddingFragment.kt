@@ -126,7 +126,6 @@ class ReviewAddingFragment(val viewModel: ReviewViewModel) : BottomSheetDialogFr
 
                 viewModel.insertReview(replaceApostrophe(binding.reviewAddingTextInputNickname),
                     replaceApostrophe(binding.reviewAddingTextInputReview),
-                    Settings.System.getString(binding.root.context.contentResolver, Settings.Secure.ANDROID_ID),
                     successfullyUploadImagesString)
 
                 viewModel.clearUploadParam()
@@ -146,8 +145,9 @@ class ReviewAddingFragment(val viewModel: ReviewViewModel) : BottomSheetDialogFr
         })
 
         viewModel.errorDescription.observe(viewLifecycleOwner, {
-            it?.let {
+            if(!it.isNullOrEmpty()) {
                 Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+                viewModel.clearError()
             }
         })
 

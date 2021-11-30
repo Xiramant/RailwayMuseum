@@ -87,10 +87,10 @@ class ReviewViewModel: ViewModel() {
         }
     }
 
-    fun insertReview(name: String, review: String, androidId: String, images: String) {
+    fun insertReview(name: String, review: String, images: String) {
         viewModelScope.launch {
             try {
-                val response = ReviewApi.retrofitInsertService.insertReviewApi(name, review, androidId, images)
+                val response = ReviewApi.retrofitInsertService.insertReviewApi(name, review, images)
                 if (response == SUCCESSFUL_RESPONSE) {
                     _reviewInsert.value = true
                 } else {
@@ -154,6 +154,10 @@ class ReviewViewModel: ViewModel() {
         countDownloadLeft.set(-1)
         _isImageUpload.value = false
         deleteReviewAddingImages()
+    }
+
+    fun clearError() {
+        _errorDescription.value = ""
     }
 
     private fun deleteReviewAddingImages() {

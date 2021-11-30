@@ -35,7 +35,6 @@ class ReviewCameraActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityReviewCameraBinding
     private lateinit var imagesDirectory: File
-    private lateinit var androidId: String
 
     private var fotoapparat: Fotoapparat? = null
     private var fotoapparatState : FotoapparatState? = null
@@ -50,10 +49,6 @@ class ReviewCameraActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityReviewCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        androidId = Settings.System.getString(baseContext.contentResolver,
-            Settings.Secure.ANDROID_ID
-        )
 
         imagesDirectory = File("${applicationContext.filesDir}${File.separator}${REVIEW_IMAGES_TAG}")
         imagesDirectory.mkdirs()
@@ -187,7 +182,7 @@ class ReviewCameraActivity : AppCompatActivity() {
 
     //Helper function used to create a timestamped file
     private fun createFile() =
-        File(imagesDirectory, "${androidId}_${SimpleDateFormat(FILENAME_FORMAT, Locale.US)
+        File(imagesDirectory, "${SimpleDateFormat(FILENAME_FORMAT, Locale.US)
             .format(System.currentTimeMillis())}$PHOTO_EXTENSION")
 
     private fun hasNoPermissions(): Boolean{

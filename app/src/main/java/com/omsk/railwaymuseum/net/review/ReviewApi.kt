@@ -35,7 +35,6 @@ interface ReviewInsertApiService {
     @POST("review_insert.php")
     suspend fun insertReviewApi(@Field("name") name: String,
                                 @Field("review") review: String,
-                                @Field("android_id") androidId: String,
                                 @Field("images") images: String,
     ): String
 }
