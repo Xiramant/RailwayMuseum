@@ -25,7 +25,7 @@
             android:layout_margin="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            />
+            android:contentDescription="@string/camera_back_description" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_flash"
@@ -37,7 +37,7 @@
             app:backgroundTint="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            />
+            android:contentDescription="@string/fab_flash_description" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_camera"
@@ -50,7 +50,8 @@
             app:backgroundTint="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="@string/fab_camera_description" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_switch_camera"
@@ -62,7 +63,7 @@
             app:backgroundTint="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            />
+            android:contentDescription="@string/fab_switch_camera_description" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

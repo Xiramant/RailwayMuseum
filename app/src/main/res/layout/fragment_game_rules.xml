@@ -20,7 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/game_rules_background_description" />
 
         <ScrollView
             android:id="@+id/game_quiz_scroll"
@@ -144,7 +145,7 @@
             app:layout_constraintEnd_toStartOf="@+id/game_rules_guideline"
             tools:src="@drawable/game_rules_character_quest"
             android:visibility="invisible"
-            />
+            android:contentDescription="@string/game_rules_character_description" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/game_rules_go"

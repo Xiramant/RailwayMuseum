@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:src="@drawable/home_placeholder"
-        android:adjustViewBounds="true"/>
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/fullscreen_image_description" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

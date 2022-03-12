@@ -24,7 +24,8 @@
             card_view:layout_constraintTop_toTopOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintBottom_toTopOf="@id/home_section_text"/>
+            card_view:layout_constraintBottom_toTopOf="@id/home_section_text"
+            android:contentDescription="@string/home_section_image_description" />
 
         <TextView
             android:id="@+id/home_section_text"

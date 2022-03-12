@@ -9,7 +9,7 @@
 
     <string name="home_slider_placeholder_description">Внешний вид выставочного центра омских железнодорожников</string>
 
-    <string name="game_list_image_description">Иконка игры</string>
+    <string name="game_list_image_description">game icon</string>
     <string name="game_type_quiz">quiz</string>
     <string name="game_type_quest">quest</string>
     <string name="game_type_fragment">fragment</string>
@@ -38,5 +38,27 @@
     <string name="review_adding_send">Отправить</string>
     <string name="review_adding_title">Оставить отзыв</string>
     <string name="review_expand">Показать полностью</string>
+    <string name="fullscreen_image_description">fullscreen image</string>
+    <string name="camera_back_description">camera exit</string>
+    <string name="fab_flash_description">flashlight</string>
+    <string name="fab_camera_description">take a photo</string>
+    <string name="fab_switch_camera_description">main / front camera switch</string>
+    <string name="event_list_image_description">event icon</string>
+    <string name="game_list_difficulty_image_description">game difficulty</string>
+    <string name="home_section_image_description">home section icon</string>
+    <string name="card_review_image_photo_description">review photo</string>
+    <string name="card_review_images_photo_description">photo of added review</string>
+    <string name="card_review_images_remove_description">deleting a photo of the added review</string>
+    <string name="page_detail_background_description">web view background</string>
+    <string name="game_quest_background_description">game quest background</string>
+    <string name="game_quest_image_description">game quest image</string>
+    <string name="game_quiz_background_description">game quiz background</string>
+    <string name="game_quiz_image_description">game quiz image</string>
+    <string name="game_rules_background_description">game rules background</string>
+    <string name="game_result_character_description">game result character</string>
+    <string name="game_rules_character_description">game rules character</string>
+    <string name="review_fab_description">adding a review</string>
+    <string name="review_adding_camera_description">open the camera</string>
+    <string name="game_result_background_description">game result background</string>
 
 </resources>

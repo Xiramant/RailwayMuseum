@@ -19,7 +19,7 @@ class GameResultFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         val binding = FragmentGameResultBinding.inflate(inflater)
-        setGameBackground(binding.gameRulesBackground)
+        setGameBackground(binding.gameResultBackground)
 
         Glide.with(binding.gameResultCharacter.context)
                 .load(R.drawable.game_rules_character_good)

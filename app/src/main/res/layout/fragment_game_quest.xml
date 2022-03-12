@@ -18,7 +18,8 @@
             tools:src="@drawable/app_background"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/game_quest_background_description" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -105,7 +106,8 @@
                 maxHeightDp="@{250}"
                 app:layout_constraintTop_toBottomOf="@+id/game_quest_current_question"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                android:contentDescription="@string/game_quest_image_description" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

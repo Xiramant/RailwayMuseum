@@ -10,7 +10,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/page_detail_background_description" />
 
         <WebView android:id="@+id/page_detail_webview"
             android:layout_width="match_parent"

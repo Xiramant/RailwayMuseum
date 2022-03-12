@@ -8,11 +8,12 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/game_rules_background"
+            android:id="@+id/game_result_background"
             tools:src="@drawable/app_background"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/game_result_background_description" />
 
         <TextView
             android:id="@+id/game_result_name"
@@ -81,7 +82,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/game_result_guideline"
-            />
+            android:contentDescription="@string/game_result_character_description" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/game_rules_replay"

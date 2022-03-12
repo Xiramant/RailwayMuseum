@@ -42,7 +42,7 @@
                     card_view:layout_constraintEnd_toEndOf="parent"
                     card_view:layout_constraintTop_toTopOf="parent"
                     android:onClick="@{() -> clickListener.onClick(imageUri)}"
-                    />
+                    android:contentDescription="@string/card_review_image_photo_description" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
     </FrameLayout>
