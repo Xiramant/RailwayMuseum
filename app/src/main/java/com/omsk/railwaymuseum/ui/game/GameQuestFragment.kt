@@ -19,7 +19,8 @@ import com.omsk.railwaymuseum.util.showFullscreenImage
 import com.omsk.railwaymuseum.viewmodels.GameQuestionsViewModel
 
 
-private const val TOAST_MESSAGE = "Неверно. Попробуйте еще раз."
+private const val TOAST_FAIL_MESSAGE = "Неверно. Попробуйте еще раз."
+private const val TOAST_SUCCESSFUL_MESSAGE = "Верно!"
 
 class GameQuestFragment : Fragment() {
 
@@ -57,7 +58,13 @@ class GameQuestFragment : Fragment() {
 
         viewModel.wrongAnswerToast.observe(viewLifecycleOwner, {
             if(it) {
-                Toast.makeText(context, TOAST_MESSAGE, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, TOAST_FAIL_MESSAGE, Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        viewModel.rightAnswerNumber.observe(viewLifecycleOwner, {
+            if (it != 0) {
+                Toast.makeText(context, TOAST_SUCCESSFUL_MESSAGE, Toast.LENGTH_SHORT).show()
             }
         })
 
