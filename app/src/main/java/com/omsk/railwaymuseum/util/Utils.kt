@@ -28,7 +28,15 @@ enum class WebTags(val tag: String) {
     UL_BEGIN("<ul>"),
     UL_END("</ul>"),
     LI_BEGIN("<li>"),
-    LI_END("</li>");
+    LI_END("</li>"),
+    BOLD_BEGIN("<b>"),
+    BOLD_END("</b>"),
+    BOLD_TWO_BEGIN("<strong>"),
+    BOLD_TWO_END("</strong>"),
+    ITALIC_BEGIN("<i>"),
+    ITALIC_END("</i>"),
+    ITALIC_TWO_BEGIN("<em>"),
+    ITALIC_TWO_END("</em>");
 }
 
 @RequiresApi(Build.VERSION_CODES.R)
@@ -155,7 +163,10 @@ fun String.smartTruncate(length: Int): String {
     if (hasMore) {
         builder.append(TEXT_REVIEW_END)
     }
-    return builder.toString()
+    //Для разделения слов, расположенных на стыке абзацев "\r\n" заменяется на "\r\n ". Иначе текст
+    // "путешественников.\r\nМузей" будет считаться одним словом. Перед возвращением обрезанного
+    // текста производится обратная операция.
+    return builder.toString().replace("\r\n ", "\r\n")
 }
 
 fun showFullscreenImage(fragment: Fragment, uri: String) {

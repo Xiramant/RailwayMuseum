@@ -62,7 +62,15 @@ fun TextView.setEventName(item: EventListModel) {
 
 @BindingAdapter("eventListText")
 fun TextView.setEventText(item: EventListModel) {
+    if (item.text.isEmpty()) {
+        text = ""
+        return
+    }
     val clearText = getClearText(item.text)
+    if (clearText.length <= START_COUNT) {
+        text = clearText
+        return
+    }
     var count = START_COUNT
     text = clearText.smartTruncate(count)
 
