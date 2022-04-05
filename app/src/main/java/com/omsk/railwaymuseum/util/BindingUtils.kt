@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.omsk.railwaymuseum.R
+import com.omsk.railwaymuseum.data.GameType
+import com.omsk.railwaymuseum.data.GameType.*
 import com.omsk.railwaymuseum.net.event.EventListModel
 import com.omsk.railwaymuseum.net.game.GameListModel
 import com.omsk.railwaymuseum.net.game.GameQuestionsModel
@@ -115,9 +117,9 @@ fun setGameListImage(imgView: ImageView, item: GameListModel) {
         "${BASE_URL}${item.imagePreview}"
     } else {
         when (item.type) {
-            imgView.context.getString(R.string.game_type_quiz) -> R.drawable.icon_game_quiz
-            imgView.context.getString(R.string.game_type_quest) -> R.drawable.icon_game_quest
-            imgView.context.getString(R.string.game_type_fragment) -> R.drawable.icon_game_fragment
+            QUIZ -> R.drawable.icon_game_quiz
+            QUEST -> R.drawable.icon_game_quest
+            FRAGMENT -> R.drawable.icon_game_fragment
             else -> R.drawable.icon_game_question
         }
     }
@@ -162,17 +164,17 @@ fun setGameBackground(imgView: ImageView){
 
 
 @BindingAdapter("gameRulesCharacter")
-fun setGameRulesCharacter(imgView: ImageView, gameType: String?) {
+fun setGameRulesCharacter(imgView: ImageView, gameType: GameType?) {
     gameType?.let {
-        val image = when(it) {
-            imgView.context.getString(R.string.game_type_quiz) -> R.drawable.game_rules_character_quiz
-            imgView.context.getString(R.string.game_type_quest) -> R.drawable.game_rules_character_quest
-            imgView.context.getString(R.string.game_type_fragment) -> R.drawable.game_rules_character_fragment
+        val image = when (it) {
+            QUIZ -> R.drawable.game_rules_character_quiz
+            QUEST -> R.drawable.game_rules_character_quest
+            FRAGMENT -> R.drawable.game_rules_character_fragment
             else -> R.drawable.game_rules_character_quest
         }
         Glide.with(imgView.context)
-                .load(image)
-                .into(imgView)
+            .load(image)
+            .into(imgView)
     }
 }
 

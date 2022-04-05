@@ -18,12 +18,12 @@ private val retrofit = Retrofit.Builder()
 
 interface GameListApiService {
     @GET("games.php")
-    suspend fun getGameListApi(): List<GameListModel>
+    suspend fun getGameListApi(): List<GameListModelNet>
 }
 
 interface GameRulesApiService {
     @GET("game_rules.php")
-    suspend fun getGameRulesApi(@Query("id") gameNameId: Int): GameRulesModel
+    suspend fun getGameRulesApi(@Query("id") gameNameId: Int): GameRulesModelNet
 }
 
 interface GameQuestionsApiService {

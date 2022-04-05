@@ -3,6 +3,7 @@ package com.omsk.railwaymuseum.viewmodels
 import androidx.lifecycle.*
 import com.omsk.railwaymuseum.net.game.GameApi
 import com.omsk.railwaymuseum.net.game.GameRulesModel
+import com.omsk.railwaymuseum.net.game.asGameRulesModel
 import com.omsk.railwaymuseum.net.game.getEmptyGameRulesModel
 import kotlinx.coroutines.launch
 
@@ -21,6 +22,7 @@ class GameRulesViewModel(private val gameNameId: Int): ViewModel() {
         viewModelScope.launch {
             try {
                 _response.value = GameApi.retrofitRulesService.getGameRulesApi(gameNameId)
+                    .asGameRulesModel()
             } catch (e: Exception) {
                 _response.value = getEmptyGameRulesModel()
             }

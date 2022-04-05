@@ -1,8 +1,10 @@
 package com.omsk.railwaymuseum.viewmodels
 
 import androidx.lifecycle.*
+import com.omsk.railwaymuseum.data.GameType
 import com.omsk.railwaymuseum.net.game.GameApi
 import com.omsk.railwaymuseum.net.game.GameListModel
+import com.omsk.railwaymuseum.net.game.asGameListModel
 import kotlinx.coroutines.launch
 
 class GameListViewModel: ViewModel() {
@@ -20,6 +22,8 @@ class GameListViewModel: ViewModel() {
         viewModelScope.launch {
             try {
                 _response.value = GameApi.retrofitListService.getGameListApi()
+                    .asGameListModel()
+                    .filter {it.type != GameType.UNDEFINED }
             } catch (e: Exception) {
                 _response.value = ArrayList()
             }

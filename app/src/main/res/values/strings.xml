@@ -10,9 +10,6 @@
     <string name="home_slider_placeholder_description">Внешний вид выставочного центра омских железнодорожников</string>
 
     <string name="game_list_image_description">game icon</string>
-    <string name="game_type_quiz">quiz</string>
-    <string name="game_type_quest">quest</string>
-    <string name="game_type_fragment">fragment</string>
     <string name="game_list_type">Тип: %s</string>
     <string name="game_list_difficulty">Сложность:</string>
 

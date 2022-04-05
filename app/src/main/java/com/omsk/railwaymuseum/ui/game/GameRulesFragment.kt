@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.omsk.railwaymuseum.R
+import com.omsk.railwaymuseum.data.GameType.*
 import com.omsk.railwaymuseum.databinding.FragmentGameRulesBinding
 import com.omsk.railwaymuseum.net.game.getEmptyGameRulesModel
 import com.omsk.railwaymuseum.util.setGameBackground
@@ -67,9 +68,9 @@ class GameRulesFragment : Fragment() {
                 binding.gameRulesGo.visibility = VISIBLE
 
                 val gameRulesCharacterAnim = when(it.type) {
-                    view.context.getString(R.string.game_type_quiz) -> AnimationUtils.loadAnimation(context, R.anim.translate_game_rules_character_quiz)
-                    view.context.getString(R.string.game_type_quest) -> AnimationUtils.loadAnimation(context, R.anim.translate_game_rules_character_quest)
-                    view.context.getString(R.string.game_type_fragment) -> AnimationUtils.loadAnimation(context, R.anim.translate_game_rules_character_fragment)
+                    QUIZ -> AnimationUtils.loadAnimation(context, R.anim.translate_game_rules_character_quiz)
+                    QUEST -> AnimationUtils.loadAnimation(context, R.anim.translate_game_rules_character_quest)
+                    FRAGMENT -> AnimationUtils.loadAnimation(context, R.anim.translate_game_rules_character_fragment)
                     else -> AnimationUtils.loadAnimation(context, R.anim.translate_game_rules_character_quiz)
                 }
                 binding.gameRulesCharacter.startAnimation(gameRulesCharacterAnim)
@@ -77,7 +78,7 @@ class GameRulesFragment : Fragment() {
 
                 binding.gameRulesGo.setOnClickListener {view ->
                     val directions = when(it.type) {
-                        view.context.getString(R.string.game_type_quiz) ->
+                        QUIZ ->
                             GameRulesFragmentDirections.actionGameRulesFragmentToGameQuizFragment(it)
                         else -> GameRulesFragmentDirections.actionGameRulesFragmentToGameQuestFragment(it)
                     }
