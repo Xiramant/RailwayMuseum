@@ -68,6 +68,17 @@ class GameQuestionsViewModel(private val game: GameRulesModel): ViewModel() {
         }
     }
 
+    fun rebusTestRightAnswer(inputAnswer: String) {
+        println(inputAnswer)
+        println(currentGameQuestion.value!!.answer)
+        if(inputAnswer.trim().lowercase() == currentGameQuestion.value!!.answer) {
+            _rightAnswerNumber.value = _rightAnswerNumber.value!!.inc()
+            setQuestion()
+        } else {
+            _wrongAnswerToast.value = true
+        }
+    }
+
     fun setQuestion() {
         _wrongAnswerToast.value = false
 

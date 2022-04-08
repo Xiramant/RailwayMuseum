@@ -167,7 +167,7 @@ fun setGameBackground(imgView: ImageView){
 fun setGameRulesCharacter(imgView: ImageView, gameType: GameType?) {
     gameType?.let {
         val image = when (it) {
-            QUIZ -> R.drawable.game_rules_character_quiz
+            QUIZ, REBUS -> R.drawable.game_rules_character_quiz
             QUEST -> R.drawable.game_rules_character_quest
             FRAGMENT -> R.drawable.game_rules_character_fragment
             else -> R.drawable.game_rules_character_quest

@@ -68,7 +68,7 @@ class GameRulesFragment : Fragment() {
                 binding.gameRulesGo.visibility = VISIBLE
 
                 val gameRulesCharacterAnim = when(it.type) {
-                    QUIZ -> AnimationUtils.loadAnimation(context, R.anim.translate_game_rules_character_quiz)
+                    QUIZ, REBUS -> AnimationUtils.loadAnimation(context, R.anim.translate_game_rules_character_quiz)
                     QUEST -> AnimationUtils.loadAnimation(context, R.anim.translate_game_rules_character_quest)
                     FRAGMENT -> AnimationUtils.loadAnimation(context, R.anim.translate_game_rules_character_fragment)
                     else -> AnimationUtils.loadAnimation(context, R.anim.translate_game_rules_character_quiz)
@@ -80,6 +80,7 @@ class GameRulesFragment : Fragment() {
                     val directions = when(it.type) {
                         QUIZ ->
                             GameRulesFragmentDirections.actionGameRulesFragmentToGameQuizFragment(it)
+                        REBUS -> GameRulesFragmentDirections.actionGameRulesFragmentToGameRebusFragment(it)
                         else -> GameRulesFragmentDirections.actionGameRulesFragmentToGameQuestFragment(it)
                     }
 

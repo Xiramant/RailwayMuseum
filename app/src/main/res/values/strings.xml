@@ -28,6 +28,7 @@
     <string name="game_quest_scip">Пропустить</string>
     <string name="game_quest_scan">Сканировать QR код</string>
     <string name="game_quest_null_question">Найди предмет:</string>
+    <string name="game_rebus_test">Проверить</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="review_adding_nickname">Имя Фамилия</string>
@@ -57,5 +58,8 @@
     <string name="review_fab_description">adding a review</string>
     <string name="review_adding_camera_description">open the camera</string>
     <string name="game_result_background_description">game result background</string>
+    <string name="game_rebus_background_description">game rebus background</string>
+    <string name="game_rebus_image_description">game rebus image</string>
+    <string name="game_rebus_answer">Напишите сюда ответ</string>
 
 </resources>

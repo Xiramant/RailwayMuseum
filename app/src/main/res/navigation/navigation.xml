@@ -75,6 +75,11 @@
             app:destination="@id/gameQuestFragment"
             app:popUpTo="@id/gameRulesFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_gameRulesFragment_to_gameRebusFragment"
+            app:destination="@id/gameRebusFragment"
+            app:popUpTo="@id/gameRulesFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/gameQuizFragment"
@@ -88,6 +93,33 @@
             android:id="@+id/action_gameQuizFragment_to_gameResultFragment"
             app:destination="@id/gameResultFragment"
             app:popUpTo="@id/gameQuizFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameQuestFragment"
+        android:name="com.omsk.railwaymuseum.ui.game.GameQuestFragment"
+        android:label="GameQuestFragment">
+        <argument
+            android:name="game"
+            app:argType="com.omsk.railwaymuseum.net.game.GameRulesModel" />
+        <action
+            android:id="@+id/action_gameQuestFragment_to_gameResultFragment"
+            app:destination="@id/gameResultFragment"
+            app:popUpTo="@id/gameQuestFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameRebusFragment"
+        android:name="com.omsk.railwaymuseum.ui.game.GameRebusFragment"
+        android:label="fragment_game_rebus"
+        tools:layout="@layout/fragment_game_rebus" >
+        <argument
+            android:name="game"
+            app:argType="com.omsk.railwaymuseum.net.game.GameRulesModel" />
+        <action
+            android:id="@+id/action_gameRebusFragment_to_gameResultFragment"
+            app:destination="@id/gameResultFragment"
+            app:popUpTo="@id/gameRebusFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
@@ -119,20 +151,13 @@
             app:destination="@id/gameQuestFragment"
             app:popUpTo="@id/gameResultFragment"
             app:popUpToInclusive="true"/>
-    </fragment>
-    <fragment
-        android:id="@+id/gameQuestFragment"
-        android:name="com.omsk.railwaymuseum.ui.game.GameQuestFragment"
-        android:label="GameQuestFragment">
-        <argument
-            android:name="game"
-            app:argType="com.omsk.railwaymuseum.net.game.GameRulesModel" />
         <action
-            android:id="@+id/action_gameQuestFragment_to_gameResultFragment"
-            app:destination="@id/gameResultFragment"
-            app:popUpTo="@id/gameQuestFragment"
+            android:id="@+id/action_gameResultFragment_to_gameRebusFragment"
+            app:destination="@id/gameRebusFragment"
+            app:popUpTo="@id/gameResultFragment"
             app:popUpToInclusive="true" />
     </fragment>
+
     <fragment
         android:id="@+id/reviewFragment"
         android:name="com.omsk.railwaymuseum.ui.review.ReviewFragment"

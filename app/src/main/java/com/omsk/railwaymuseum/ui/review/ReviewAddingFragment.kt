@@ -1,22 +1,16 @@
 package com.omsk.railwaymuseum.ui.review
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.widget.addTextChangedListener
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import com.omsk.railwaymuseum.databinding.FragmentReviewAddingBinding
 import com.omsk.railwaymuseum.ui.ProgressBarFragment
-import com.omsk.railwaymuseum.util.showFullscreenImage
+import com.omsk.railwaymuseum.util.*
 import com.omsk.railwaymuseum.viewmodels.IMAGES_URI_SEPARATOR
 import com.omsk.railwaymuseum.viewmodels.ProgressBarViewModel
 import com.omsk.railwaymuseum.viewmodels.ReviewViewModel
@@ -59,10 +53,10 @@ class ReviewAddingFragment(val viewModel: ReviewViewModel) : BottomSheetDialogFr
         progressBarFragment.isCancelable = false
 
         binding.reviewAddingInputLayoutNickname.setStartIconOnClickListener {
-            hideKeyboard()
+            hideKeyboard(binding.root)
         }
         binding.reviewAddingInputLayoutReview.setStartIconOnClickListener {
-            hideKeyboard()
+            hideKeyboard(binding.root)
         }
 
         //Показ EndIcon, если поле не пустое
@@ -73,7 +67,7 @@ class ReviewAddingFragment(val viewModel: ReviewViewModel) : BottomSheetDialogFr
             binding.reviewAddingTextInputReview.requestFocus()
         }
         binding.reviewAddingInputLayoutReview.setEndIconOnClickListener {
-            hideKeyboard()
+            hideKeyboard(binding.root)
             viewFocus(binding.reviewAddingCamera)
         }
 
@@ -83,10 +77,10 @@ class ReviewAddingFragment(val viewModel: ReviewViewModel) : BottomSheetDialogFr
         }
 
         binding.reviewAddingSend.setOnClickListener {
-            if(emptynessCheck(binding.reviewAddingTextInputNickname, messageNicknameEmpty)) {
+            if(emptinessCheck(binding.reviewAddingTextInputNickname, messageNicknameEmpty)) {
                 return@setOnClickListener
             }
-            if(emptynessCheck(binding.reviewAddingTextInputReview, messageReviewEmpty)) {
+            if(emptinessCheck(binding.reviewAddingTextInputReview, messageReviewEmpty)) {
                 return@setOnClickListener
             }
             viewModel.imageList.value?.let{
@@ -137,7 +131,7 @@ class ReviewAddingFragment(val viewModel: ReviewViewModel) : BottomSheetDialogFr
             it?.let {
                 if (it) {
                     Toast.makeText(context, successfulToastText, Toast.LENGTH_SHORT).show()
-                    hideKeyboard()
+                    hideKeyboard(binding.root)
                     dismiss()
                     viewModel.getReview()
                 }
@@ -162,37 +156,6 @@ class ReviewAddingFragment(val viewModel: ReviewViewModel) : BottomSheetDialogFr
     override fun onStop() {
         super.onStop()
         viewModel.hideToggle()
-    }
-
-    private fun hideKeyboard() {
-        val imm = binding.root.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(binding.root.windowToken, 0)
-    }
-
-    private fun endIconShow(textInputLayout: TextInputLayout,
-                            textInputEditText: TextInputEditText) {
-        textInputLayout.addOnEditTextAttachedListener {inputLayout ->
-            inputLayout.isEndIconVisible = !textInputEditText.text.isNullOrEmpty()
-            textInputEditText.addTextChangedListener {editText ->
-                inputLayout.isEndIconVisible = !editText.isNullOrEmpty()
-            }
-        }
-    }
-
-    private fun viewFocus(view: View) {
-        view.isFocusable = true
-        view.isFocusableInTouchMode = true
-        view.requestFocus()
-    }
-
-    private fun emptynessCheck(textView: TextView, message: String): Boolean {
-        if(!textView.text.isNullOrEmpty()) {
-            return false
-        }
-
-        Toast.makeText(textView.context, message, Toast.LENGTH_SHORT).show()
-        textView.requestFocus()
-        return true
     }
 
     //Наличие апострофа в тексте приводит к ошибке его вставки в БД (на стороне сервера),

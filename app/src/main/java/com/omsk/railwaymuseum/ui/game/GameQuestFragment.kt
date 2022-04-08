@@ -19,8 +19,8 @@ import com.omsk.railwaymuseum.util.showFullscreenImage
 import com.omsk.railwaymuseum.viewmodels.GameQuestionsViewModel
 
 
-private const val TOAST_FAIL_MESSAGE = "Неверно. Попробуйте еще раз."
-private const val TOAST_SUCCESSFUL_MESSAGE = "Верно!"
+const val TOAST_FAIL_MESSAGE = "Неверно. Попробуйте еще раз."
+const val TOAST_SUCCESSFUL_MESSAGE = "Верно!"
 
 class GameQuestFragment : Fragment() {
 

@@ -4,5 +4,6 @@ enum class GameType {
     QUIZ,
     QUEST,
     FRAGMENT,
+    REBUS,
     UNDEFINED
 }
