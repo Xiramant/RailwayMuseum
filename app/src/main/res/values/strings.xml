@@ -26,7 +26,7 @@
     <string name="game_comparison">%1$d / %2$d</string>
 
     <string name="game_quest_scip">Пропустить</string>
-    <string name="game_quest_scan">Сканировать QR код</string>
+    <string name="game_quest_scan">QR код</string>
     <string name="game_quest_null_question">Найди предмет:</string>
     <string name="game_rebus_test">Проверить</string>
 

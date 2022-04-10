@@ -42,7 +42,7 @@ class ReviewCameraActivity : AppCompatActivity() {
     private var flashState: FlashState? = null
     private var photoFile: File? = null
     private val permissions = arrayOf(Manifest.permission.CAMERA)
-    private val cameraResolution = Resolution(1280, 960)
+    private val cameraResolution = Resolution(1920, 1080)
     private val cameraQuality = 80
 
     override fun onCreate(savedInstanceState: Bundle?) {
