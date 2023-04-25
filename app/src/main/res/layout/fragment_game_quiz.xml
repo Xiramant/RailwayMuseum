@@ -93,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="12:55"
-                android:textColor="@color/gray"
+                style="@style/textViewDefault"
                 app:layout_constraintTop_toBottomOf="@+id/game_quiz_right_answer"
                 app:layout_constraintStart_toStartOf="@+id/game_quiz_right_answer"/>
 
@@ -221,7 +221,6 @@
             android:paddingHorizontal="25dp"
             android:paddingVertical="15dp"
             android:text="@string/game_quiz_next"
-            style="@style/Widget.MaterialComponents.Button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

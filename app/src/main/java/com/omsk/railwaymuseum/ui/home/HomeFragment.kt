@@ -18,6 +18,7 @@ import com.omsk.railwaymuseum.data.HomeSectionModel
 import com.omsk.railwaymuseum.util.HOME_IMAGE_RATIO
 import com.omsk.railwaymuseum.util.PHP_URL
 import com.omsk.railwaymuseum.util.getDisplayWidth
+import com.omsk.railwaymuseum.util.isNightMode
 import com.omsk.railwaymuseum.viewmodels.HomeViewModel
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
@@ -30,6 +31,7 @@ const val EVENT_NET_TYPE = "event"
 const val INTERESTING_NET_TYPE = "interesting"
 const val EXHIBIT_NET_TYPE = "exhibit"
 const val INFO_REQUEST = "${PHP_URL}info.php"
+const val MODE_NIGHT_SYMBOL_REQUEST = "?"
 
 class HomeFragment : Fragment() {
 
@@ -108,8 +110,7 @@ class HomeFragment : Fragment() {
                             .actionHomeFragmentToEventListFragment(EXHIBIT_NET_TYPE)
                     R.string.name_section_game -> HomeFragmentDirections.actionHomeFragmentToGameFragment()
                     R.string.name_section_info -> HomeFragmentDirections.actionHomeFragmentToDetailPageFragment(
-                        INFO_REQUEST
-                    )
+                        INFO_REQUEST, MODE_NIGHT_SYMBOL_REQUEST)
                     R.string.name_section_review -> HomeFragmentDirections.actionHomeFragmentToReviewFragment()
                     else -> null
                 }

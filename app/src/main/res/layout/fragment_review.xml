@@ -33,6 +33,7 @@
             android:backgroundTint="@color/orange"
             app:borderWidth="0dp"
             android:src="@drawable/fab_plus"
+            app:tint="@color/white"
             android:layout_margin="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

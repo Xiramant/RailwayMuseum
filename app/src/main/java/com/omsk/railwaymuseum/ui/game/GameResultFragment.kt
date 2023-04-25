@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.omsk.railwaymuseum.R
 import com.omsk.railwaymuseum.data.GameType.*
 import com.omsk.railwaymuseum.databinding.FragmentGameResultBinding
+import com.omsk.railwaymuseum.util.isNightMode
 import com.omsk.railwaymuseum.util.setGameBackground
 
 class GameResultFragment : Fragment() {
@@ -22,8 +23,13 @@ class GameResultFragment : Fragment() {
         val binding = FragmentGameResultBinding.inflate(inflater)
         setGameBackground(binding.gameResultBackground)
 
+        val image = if (!isNightMode(binding.gameResultCharacter.context)) {
+            R.drawable.game_character_good
+        } else {
+            R.drawable.game_character_good_night
+        }
         Glide.with(binding.gameResultCharacter.context)
-                .load(R.drawable.game_rules_character_good)
+                .load(image)
                 .into(binding.gameResultCharacter)
         binding.gameResultName.text = args.game.name
         binding.gameResultNumber.text = binding.gameResultNumber.context.getString(R.string.game_comparison, args.gameResultNumber, args.game.questionsNumber)

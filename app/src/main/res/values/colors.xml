@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="gray">#8a000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="green">#FF7DAE45</color>
-    <color name="green_transparent">#c07DAE45</color>
-    <color name="dark_green">#FF5F8235</color>
-    <color name="dark_green_transparent">#c05F8235</color>
-    <color name="yellow">#FFFFBD00</color>
-    <color name="orange">#FFFF8E00</color>
-    <color name="color_section_event">#FF5F8235</color>
-    <color name="color_section_exhibit">#FF5F8235</color>
-    <color name="color_section_game">#9A1212</color>
-    <color name="color_section_info">#FF5F8235</color>
-    <color name="color_section_interesting">#FF5F8235</color>
-    <color name="color_section_review">#165d6e</color>
+    <color name="primary">@color/green_dark</color>
+    <color name="secondary">@color/gray</color>
+
+    <color name="title">@color/primary</color>
+    <color name="text">@color/secondary</color>
+
+    <color name="section_event">@color/primary</color>
+    <color name="section_exhibit">@color/primary</color>
+    <color name="section_game">@color/red</color>
+    <color name="section_info">@color/primary</color>
+    <color name="section_interesting">@color/primary</color>
+    <color name="section_review">@color/blue</color>
+
+    <color name="game_character">@color/gray_light</color>
+    <color name="game_character_night">@color/gray_night</color>
+
+    <color name="button">@color/green</color>
+
+    <color name="icon">@color/gray_60</color>
+
+    <color name="edit_text_on_surface">@color/black</color>
+    <color name="edit_text_box_stroke">@color/green</color>
+    <color name="edit_text_rebus_bc">@color/white</color>
 </resources>

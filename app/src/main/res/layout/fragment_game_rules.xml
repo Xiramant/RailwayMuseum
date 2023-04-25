@@ -143,8 +143,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/game_rules_guideline"
-            tools:src="@drawable/game_rules_character_quest"
-            android:visibility="invisible"
+            tools:src="@drawable/game_character_quest"
             android:contentDescription="@string/game_rules_character_description" />
 
         <com.google.android.material.button.MaterialButton
@@ -156,7 +155,6 @@
             android:paddingHorizontal="25dp"
             android:paddingVertical="15dp"
             android:text="@string/game_rules_go"
-            style="@style/Widget.MaterialComponents.Button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/game_rules_guideline"
             app:layout_constraintEnd_toEndOf="parent"

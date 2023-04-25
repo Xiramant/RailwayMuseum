@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">@color/green</color>
+    <color name="secondary">@color/white_transparent</color>
+
+    <color name="section_event">@color/primary</color>
+    <color name="section_exhibit">@color/primary</color>
+    <color name="section_game">@color/red_night</color>
+    <color name="section_info">@color/primary</color>
+    <color name="section_interesting">@color/primary</color>
+    <color name="section_review">@color/cyan_night</color>
+
+    <color name="button">@color/green_dark</color>
+
+    <color name="icon">@color/white_60</color>
+
+    <color name="edit_text_on_surface">@color/white</color>
+    <color name="edit_text_box_stroke">@color/white_transparent</color>
+    <color name="edit_text_rebus_bc">@color/gray_light</color>
+</resources>

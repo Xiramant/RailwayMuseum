@@ -2,15 +2,24 @@
     <!-- Base application theme. -->
     <style name="Theme.RailwayMuseum" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/green</item>
-        <item name="colorPrimaryVariant">@color/dark_green</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/gray</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/yellow</item>
+        <item name="colorSecondary">@color/orange</item>
         <item name="colorSecondaryVariant">@color/orange</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOnSecondary">@color/gray</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <item name="android:textViewStyle">@style/textViewDefault</item>
+
+        <item name="radioButtonStyle">@style/Widget.App.RadioButton</item>
+
+        <item name="materialButtonStyle">@style/myButtonStyle</item>
+
+        <item name="textInputStyle">@style/myEditText</item>
     </style>
+
 </resources>

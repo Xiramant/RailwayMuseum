@@ -1,6 +1,7 @@
 package com.omsk.railwaymuseum.util
 
 import android.app.Activity
+import android.content.Context
 import android.os.Build
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -8,6 +9,7 @@ import android.view.ViewTreeObserver
 import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.TextView
+import androidx.core.graphics.*
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -30,6 +32,7 @@ import java.sql.Timestamp
 private const val START_COUNT = 70
 private const val COUNT_INCREMENT = 10
 private const val EVENT_LIST_TEXT_LINE_COUNT = 4
+private const val NIGHT_KEY = "night"
 
 @BindingAdapter("eventListData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<EventListModel>?) {
@@ -116,11 +119,10 @@ fun setGameListImage(imgView: ImageView, item: GameListModel) {
     val image = if(item.imagePreview.isNotEmpty()) {
         "${BASE_URL}${item.imagePreview}"
     } else {
-        when (item.type) {
-            QUIZ -> R.drawable.icon_game_quiz
-            QUEST -> R.drawable.icon_game_quest
-            FRAGMENT -> R.drawable.icon_game_fragment
-            else -> R.drawable.icon_game_question
+        if (!isNightMode(imgView.context)) {
+            R.drawable.icon_game_default
+        } else {
+            R.drawable.icon_game_default_night
         }
     }
     Glide.with(imgView.context)
@@ -155,10 +157,17 @@ fun setGameListDifficultyImage(imgView: ImageView, item: GameListModel) {
 //Система требует для @BindingAdapter использование 1 или 2 параметров, поэтому пришлось
 //  использовать обычную функцию.
 fun setGameBackground(imgView: ImageView){
+    val bcImage = if (isNightMode(imgView.context)) R.drawable.app_background_night
+                    else R.drawable.app_background
+
     Glide.with(imgView.context)
-            .load(R.drawable.app_background)
+            .load(bcImage)
             .into(imgView)
     imgView.alpha = 0.7F
+}
+
+fun isNightMode(context: Context): Boolean {
+    return context.getString(R.string.night_mode_test) == NIGHT_KEY
 }
 
 
@@ -166,11 +175,22 @@ fun setGameBackground(imgView: ImageView){
 @BindingAdapter("gameRulesCharacter")
 fun setGameRulesCharacter(imgView: ImageView, gameType: GameType?) {
     gameType?.let {
-        val image = when (it) {
-            QUIZ, REBUS -> R.drawable.game_rules_character_quiz
-            QUEST -> R.drawable.game_rules_character_quest
-            FRAGMENT -> R.drawable.game_rules_character_fragment
-            else -> R.drawable.game_rules_character_quest
+        //Замена цвета иллюстрации в colors работает для src, но не срабатывает для glide,
+        // поэтому пришлось сделать 2 набора иллюстраций для светлой и темной темы
+        val image = if (!isNightMode(imgView.context)) {
+            when (it) {
+                QUIZ, REBUS -> R.drawable.game_character_quiz
+                QUEST -> R.drawable.game_character_quest
+                FRAGMENT -> R.drawable.game_character_fragment
+                else -> R.drawable.game_character_quiz
+            }
+        } else {
+            when (it) {
+                QUIZ, REBUS -> R.drawable.game_character_quiz_night
+                QUEST -> R.drawable.game_character_quest_night
+                FRAGMENT -> R.drawable.game_character_fragment_night
+                else -> R.drawable.game_character_quiz_night
+            }
         }
         Glide.with(imgView.context)
             .load(image)

@@ -19,7 +19,7 @@
             android:text="@string/review_adding_title"
             android:layout_marginTop="8dp"
             android:textSize="16sp"
-            android:textColor="@color/dark_green"
+            android:textColor="@color/title"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -30,11 +30,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginHorizontal="16dp"
-            app:startIconDrawable="@drawable/keyboard_hide"
-            app:endIconMode="custom"
-            app:endIconTint="@color/dark_green"
-            app:endIconDrawable="@drawable/icon_review_send"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:layout_constraintTop_toBottomOf="@+id/review_adding_title"
             app:layout_constraintStart_toStartOf="parent">
 
@@ -55,11 +50,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginHorizontal="16dp"
-            app:startIconDrawable="@drawable/keyboard_hide"
-            app:endIconMode="custom"
-            app:endIconTint="@color/dark_green"
-            app:endIconDrawable="@drawable/icon_review_send"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:layout_constraintTop_toBottomOf="@+id/review_adding_input_layout_nickname"
             app:layout_constraintStart_toStartOf="parent">
 
@@ -106,7 +96,6 @@
             android:adjustViewBounds="true"
             android:src="@drawable/icon_review_camera"
             android:layout_marginStart="16dp"
-            app:tint="#4D4D4D"
             app:layout_constraintBottom_toBottomOf="@+id/review_adding_send"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/review_adding_send"
@@ -119,7 +108,7 @@
             android:text="@string/review_adding_send"
             android:layout_marginVertical="8dp"
             android:layout_marginEnd="16dp"
-            style="@style/Widget.MaterialComponents.Button"
+            style="@style/myButtonStyle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/review_adding_images_recycler"
             app:layout_constraintBottom_toBottomOf="parent"/>

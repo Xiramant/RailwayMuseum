@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -48,11 +49,12 @@
                     eventListName="@{eventListModel}"
                     android:layout_width="0dp"
                     android:layout_height="33dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginBottom="2dp"
                     android:lines="2"
                     android:gravity="start|top"
-                    android:textColor="@color/dark_green"
+                    android:textColor="@color/title"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="2dp"
+                    tools:text="Выставка паровозов"
                     card_view:layout_constraintBottom_toTopOf="@+id/event_list_text"
                     card_view:layout_constraintEnd_toEndOf="parent"
                     card_view:layout_constraintStart_toEndOf="@+id/event_list_image"

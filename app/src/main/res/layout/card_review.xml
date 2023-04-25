@@ -42,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:maxLines="2"
                     android:gravity="start|top"
-                    android:textColor="@color/dark_green"
+                    android:textColor="@color/title"
                     tools:text="Сушкин Александр"
                     card_view:layout_constraintTop_toTopOf="parent"
                     card_view:layout_constraintStart_toStartOf="parent" />

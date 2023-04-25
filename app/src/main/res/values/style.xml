@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="textViewDefault" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/secondary</item>
+    </style>
+
+    <style name="Widget.App.RadioButton" parent="Widget.MaterialComponents.CompoundButton.RadioButton">
+        <item name="android:textColor">@color/secondary</item>
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.RadioButton</item>
+    </style>
+    <style name="ThemeOverlay.App.RadioButton" parent="">
+        <item name="colorOnSurface">@color/secondary</item>
+        <item name="colorSecondary">@color/orange</item>
+    </style>
+
+    <style name="myActionBar"
+        parent="@style/Widget.AppCompat.ActionBar">
+        <item name="android:titleTextStyle">@style/TitleTextStyle</item>
+        <item name="android:background">@color/green</item>
+        <!-- Support library compatibility -->
+        <item name="titleTextStyle">@style/TitleTextStyle</item>
+        <item name="background">@color/green</item>
+    </style>
+
+    <style name="TitleTextStyle"
+        parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <!--        <item name="android:textSize">20sp</item>-->
+        <item name="android:fontFamily">@font/geneva</item>
+    </style>
+
+    <style name="myButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/button</item>
+    </style>
+
+    <style name="myEditText" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.TextInputLayout</item>
+        <item name="startIconDrawable">@drawable/keyboard_hide</item>
+        <item name="endIconDrawable">@drawable/icon_review_send</item>
+        <item name="endIconMode">custom</item>
+        <item name="endIconTint">@color/green</item>
+    </style>
+    <style name="ThemeOverlay.App.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="colorPrimary">@color/edit_text_box_stroke</item>
+        <item name="colorOnSurface">@color/edit_text_on_surface</item>
+    </style>
+
+    <style name="rebus" parent="myEditText">
+        <item name="boxBackgroundColor">@color/edit_text_rebus_bc</item>
+    </style>
+
+</resources>

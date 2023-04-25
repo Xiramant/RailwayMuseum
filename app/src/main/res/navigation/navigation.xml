@@ -43,6 +43,9 @@
         <argument
             android:name="detailPageRequest"
             app:argType="string" />
+        <argument
+            android:name="nightModeSymbolRequest"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/gameListFragment"

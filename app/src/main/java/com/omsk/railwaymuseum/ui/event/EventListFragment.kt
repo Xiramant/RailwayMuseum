@@ -10,9 +10,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.omsk.railwaymuseum.databinding.FragmentEventListBinding
 import com.omsk.railwaymuseum.util.PHP_URL
+import com.omsk.railwaymuseum.util.isNightMode
 import com.omsk.railwaymuseum.viewmodels.EventListViewModel
 
 const val DETAIL_REQUEST = "${PHP_URL}section_id.php?id="
+const val MODE_NIGHT_SYMBOL_REQUEST = "&"
 
 class EventListFragment : Fragment() {
 
@@ -26,7 +28,7 @@ class EventListFragment : Fragment() {
         val adapter = EventListAdapter(ClickListenerEventList {
             it.let {
                 val directions = EventListFragmentDirections
-                        .actionEventListFragmentToDetailPageFragment("$DETAIL_REQUEST$it")
+                        .actionEventListFragmentToDetailPageFragment("$DETAIL_REQUEST$it", MODE_NIGHT_SYMBOL_REQUEST)
                 findNavController().navigate(directions)
             }
         })

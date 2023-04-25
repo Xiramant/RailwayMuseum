@@ -36,6 +36,7 @@
     <string name="review_adding_send">Отправить</string>
     <string name="review_adding_title">Оставить отзыв</string>
     <string name="review_expand">Показать полностью</string>
+
     <string name="fullscreen_image_description">fullscreen image</string>
     <string name="camera_back_description">camera exit</string>
     <string name="fab_flash_description">flashlight</string>
@@ -61,5 +62,12 @@
     <string name="game_rebus_background_description">game rebus background</string>
     <string name="game_rebus_image_description">game rebus image</string>
     <string name="game_rebus_answer">Напишите сюда ответ</string>
+
+    <string name="theme_light">Светлая тема</string>
+    <string name="theme_dark">Темная тема</string>
+    <string name="theme_system">Как в системе</string>
+    <string name="theme_battery">В зависимости от энергосбережения</string>
+
+    <string name="night_mode_test">light</string>
 
 </resources>

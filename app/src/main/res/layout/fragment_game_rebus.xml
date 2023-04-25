@@ -95,7 +95,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="12:55"
-                android:textColor="@color/gray"
+                style="@style/textViewDefault"
                 app:layout_constraintTop_toBottomOf="@+id/game_rebus_right_answer"
                 app:layout_constraintStart_toStartOf="@+id/game_rebus_right_answer"/>
 
@@ -119,12 +119,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@color/white"
-                app:startIconDrawable="@drawable/keyboard_hide"
-                app:endIconMode="custom"
-                app:endIconTint="@color/dark_green"
-                app:endIconDrawable="@drawable/icon_review_send"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/rebus"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
@@ -150,7 +145,6 @@
             android:paddingHorizontal="15dp"
             android:paddingVertical="15dp"
             android:text="@string/game_quest_scip"
-            style="@style/Widget.MaterialComponents.Button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/game_rebus_next"
@@ -165,7 +159,6 @@
             android:paddingHorizontal="15dp"
             android:paddingVertical="15dp"
             android:text="@string/game_rebus_test"
-            style="@style/Widget.MaterialComponents.Button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/game_rebus_scip"
             app:layout_constraintEnd_toEndOf="parent"
